@@ -50,6 +50,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            position: relative;
         }
         
         .build-card:hover {
@@ -66,7 +67,10 @@
         
         .build-info {
             padding: 15px;
+            padding-bottom: 25px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
         
         .build-name {
@@ -83,6 +87,36 @@
             border-radius: 20px;
             font-size: 0.8em;
             margin: 5px;
+        }
+        
+        /* === DOWNLOAD BUTTON === */
+        .download-btn {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2E8B57;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            width: 80%;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .build-card:hover .download-btn {
+            opacity: 1;
+        }
+        
+        .download-btn:hover {
+            background: #3CB371;
+            transform: translateX(-50%) scale(1.05);
         }
         
         /* === FOOTER === */
@@ -117,6 +151,7 @@
                         <span class="build-category">Castle</span>
                     </div>
                 </div>
+                <button class="download-btn">Download Schematic</button>
             </div>
             
             <!-- Build 2 -->
@@ -129,6 +164,7 @@
                         <span class="build-category">Survival</span>
                     </div>
                 </div>
+                <button class="download-btn">Download Schematic</button>
             </div>
             
             <!-- Build 3 -->
@@ -141,6 +177,7 @@
                         <span class="build-category">Creative</span>
                     </div>
                 </div>
+                <button class="download-btn">Download Schematic</button>
             </div>
             
             <!-- Build 4 -->
@@ -153,6 +190,7 @@
                         <span class="build-category">Fantasy</span>
                     </div>
                 </div>
+                <button class="download-btn">Download Schematic</button>
             </div>
         </div>
     </div>
@@ -167,10 +205,29 @@
     <script>
         // Connect each build to its viewer
         document.querySelectorAll('.build-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const schematicFile = this.getAttribute('data-schematic');
-                window.open(`viewer.html?schematic=${schematicFile}`, '_blank');
+            card.addEventListener('click', function(e) {
+                // Don't open viewer if download button was clicked
+                if (!e.target.classList.contains('download-btn')) {
+                    const schematicFile = this.getAttribute('data-schematic');
+                    window.open(`viewer.html?schematic=${schematicFile}`, '_blank');
+                }
             });
+            
+            // Add download functionality to each button
+            const downloadBtn = card.querySelector('.download-btn');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent triggering the card click
+                    const schematicFile = card.getAttribute('data-schematic');
+                    // Create temporary download link
+                    const link = document.createElement('a');
+                    link.href = `schematics/${schematicFile}`;
+                    link.download = schematicFile;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            }
         });
     </script>
 </body>
