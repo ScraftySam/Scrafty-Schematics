@@ -27,11 +27,11 @@
         
         /* === MINECRAFT BANNER HEADER === */
         header {
-            background: url('https://i.imgur.com/JmYQ3lW.jpg') center/cover;
+            background: url('https://i.imgur.com/KmiORQe.png') center/cover;
             padding: 80px 0;
             text-align: center;
             position: relative;
-            border-bottom: 8px solid #158A92; /* Cyan border */
+            border-bottom: 8px solid #158A92;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
         
@@ -39,7 +39,7 @@
             background: rgba(0, 0, 0, 0.7);
             display: inline-block;
             padding: 30px 60px;
-            border: 4px solid #158A92; /* Cyan border */
+            border: 4px solid #158A92;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
             max-width: 1200px;
             margin: 0 auto;
@@ -84,20 +84,20 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
             position: relative;
-            border: 2px solid #158A92; /* Cyan border */
+            border: 2px solid #158A92;
         }
         
         .build-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 14px 28px rgba(21,138,146,0.3), 0 10px 10px rgba(0,0,0,0.22);
-            border-color: #1FCBDA; /* Brighter cyan on hover */
+            border-color: #1FCBDA;
         }
         
         .thumbnail {
             width: 100%;
             height: 180px;
             object-fit: cover;
-            border-bottom: 3px solid #158A92; /* Cyan border */
+            border-bottom: 3px solid #158A92;
             background: linear-gradient(45deg, #3a3a3a 0%, #2d2d2d 100%);
         }
         
@@ -120,7 +120,7 @@
         
         .build-category {
             display: inline-block;
-            background: #158A92; /* Cyan background */
+            background: #158A92;
             color: #FFD700;
             padding: 4px 12px;
             border-radius: 20px;
@@ -128,7 +128,105 @@
             margin: 5px;
             font-family: 'Press Start 2P', cursive;
             text-shadow: 1px 1px 0 #000;
-            border: 1px solid #1FCBDA; /* Brighter cyan border */
+            border: 1px solid #1FCBDA;
+        }
+
+        /* === VIEWER STYLES === */
+        #viewer-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        #viewer-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        #close-viewer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .layer-image {
+            max-width: 100%;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+        }
+
+        .block-marker {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255,255,0,0.3);
+            border: 2px dashed red;
+            border-radius: 50%;
+            cursor: help;
+        }
+
+        .viewer-btn {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .layer-indicator {
+            font-weight: bold;
+            color: #2E8B57;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        #block-info {
+            display: none;
+            min-height: 60px;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: left;
+            font-family: monospace;
+            white-space: pre-wrap;
+            position: relative;
+        }
+
+        #close-info {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 12px;
         }
         
         /* === FOOTER === */
@@ -137,9 +235,9 @@
             padding: 20px;
             background: #1a1a1a;
             color: #FFD700;
-            border-top: 4px solid #158A92; /* Cyan border */
+            border-top: 4px solid #158A92;
             font-family: 'Press Start 2P', cursive;
-            margin-top: auto; /* Pushes footer to bottom */
+            margin-top: auto;
         }
         
         /* === RESPONSIVE ADJUSTMENTS === */
@@ -155,6 +253,10 @@
             }
             .build-grid {
                 grid-template-columns: 1fr;
+            }
+            #viewer-container {
+                padding: 10px;
+                width: 95%;
             }
         }
     </style>
@@ -174,7 +276,7 @@
     <div class="container">
         <div class="build-grid">
             <!-- Build 1 -->
-            <div class="build-card">
+            <div class="build-card" data-schematic="fantasy-castle">
                 <img src="https://via.placeholder.com/300x180?text=Fantasy+Castle" class="thumbnail" alt="Fantasy Castle">
                 <div class="build-info">
                     <div class="build-name">Fantasy Castle</div>
@@ -186,7 +288,7 @@
             </div>
             
             <!-- Build 2 -->
-            <div class="build-card">
+            <div class="build-card" data-schematic="medieval-tavern">
                 <img src="https://via.placeholder.com/300x180?text=Medieval+Tavern" class="thumbnail" alt="Medieval Tavern">
                 <div class="build-info">
                     <div class="build-name">Medieval Tavern</div>
@@ -198,7 +300,7 @@
             </div>
             
             <!-- Build 3 -->
-            <div class="build-card">
+            <div class="build-card" data-schematic="modern-mansion">
                 <img src="https://via.placeholder.com/300x180?text=Modern+Mansion" class="thumbnail" alt="Modern Mansion">
                 <div class="build-info">
                     <div class="build-name">Modern Mansion</div>
@@ -210,7 +312,7 @@
             </div>
             
             <!-- Build 4 -->
-            <div class="build-card">
+            <div class="build-card" data-schematic="steampunk-airship">
                 <img src="https://via.placeholder.com/300x180?text=Steampunk+Airship" class="thumbnail" alt="Steampunk Airship">
                 <div class="build-info">
                     <div class="build-name">Steampunk Airship</div>
@@ -223,11 +325,203 @@
         </div>
     </div>
     
+    <!-- SCHEMATIC VIEWER MODAL -->
+    <div id="viewer-modal">
+        <div id="viewer-container">
+            <button id="close-viewer">×</button>
+            <h1>Build Viewer</h1>
+            <div class="layer-indicator">Layer <span id="current-layer">0</span></div>
+            
+            <div id="screenshot-container">
+                <!-- Screenshot will appear here -->
+            </div>
+            
+            <div class="controls">
+                <button id="prev-layer" class="viewer-btn" disabled>← Previous</button>
+                <button id="next-layer" class="viewer-btn">Next →</button>
+            </div>
+            
+            <div id="block-info">
+                <button id="close-info">×</button>
+                <!-- Block details will appear here -->
+            </div>
+        </div>
+    </div>
+    
     <!-- FOOTER -->
     <footer>
         <div class="container">
             <p>© 2025 Scrafty_Sam's Builds | Made with ♥ for Minecraft</p>
         </div>
     </footer>
+
+    <script>
+        // ===== BUILD DATA =====
+        const builds = {
+            "fantasy-castle": {
+                layers: [
+                    {
+                        image: "images/fantasy-castle/layer-0.jpg",
+                        blocks: [
+                            {
+                                x: 15, y: 30,
+                                type: "oak_stairs",
+                                state: "facing: north, half: top",
+                                notes: "Main entrance stairs"
+                            }
+                        ]
+                    },
+                    {
+                        image: "images/fantasy-castle/layer-1.jpg",
+                        blocks: []
+                    }
+                ]
+            },
+            "medieval-tavern": {
+                layers: [
+                    {
+                        image: "images/medieval-tavern/layer-0.jpg",
+                        blocks: []
+                    }
+                ]
+            },
+            "modern-mansion": {
+                layers: [
+                    {
+                        image: "images/modern-mansion/layer-0.jpg",
+                        blocks: []
+                    }
+                ]
+            },
+            "steampunk-airship": {
+                layers: [
+                    {
+                        image: "images/steampunk-airship/layer-0.jpg",
+                        blocks: []
+                    }
+                ]
+            }
+        };
+
+        // ===== VIEWER CODE =====
+        let currentBuild = null;
+        let currentLayer = 0;
+        let activeMarker = null;
+        const container = document.getElementById('screenshot-container');
+        const blockInfo = document.getElementById('block-info');
+        const layerIndicator = document.getElementById('current-layer');
+        const viewerModal = document.getElementById('viewer-modal');
+
+        function renderLayer(layerIndex) {
+            container.innerHTML = '';
+            const layer = builds[currentBuild].layers[layerIndex];
+            if (!layer) return;
+            
+            layerIndicator.textContent = layerIndex;
+            
+            // Load screenshot
+            const img = document.createElement('img');
+            img.src = layer.image;
+            img.className = 'layer-image';
+            img.alt = `Layer ${layerIndex} screenshot`;
+            container.appendChild(img);
+            
+            // Add interactive markers
+            layer.blocks.forEach(block => {
+                const marker = document.createElement('div');
+                marker.className = 'block-marker';
+                marker.style.left = `${block.x}%`;
+                marker.style.top = `${block.y}%`;
+                
+                marker.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    
+                    if (activeMarker === marker) {
+                        marker.classList.remove('active');
+                        blockInfo.style.display = 'none';
+                        activeMarker = null;
+                    } else {
+                        if (activeMarker) activeMarker.classList.remove('active');
+                        
+                        marker.classList.add('active');
+                        blockInfo.innerHTML = `
+                            <button id="close-info">×</button>
+                            <strong>${block.type.toUpperCase().replace(/_/g, ' ')}</strong>
+                            ----------------------
+                            State: ${block.state}
+                            Notes: ${block.notes}
+                            Layer: ${layerIndex}
+                        `;
+                        blockInfo.style.display = 'block';
+                        activeMarker = marker;
+                        
+                        document.getElementById('close-info').addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            blockInfo.style.display = 'none';
+                            marker.classList.remove('active');
+                            activeMarker = null;
+                        });
+                    }
+                });
+                
+                container.appendChild(marker);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-layer').disabled = layerIndex === 0;
+            document.getElementById('next-layer').disabled = layerIndex === builds[currentBuild].layers.length - 1;
+        }
+
+        // Navigation events
+        document.getElementById('prev-layer').addEventListener('click', () => {
+            if (currentLayer > 0) {
+                currentLayer--;
+                if (activeMarker) {
+                    activeMarker.classList.remove('active');
+                    blockInfo.style.display = 'none';
+                    activeMarker = null;
+                }
+                renderLayer(currentLayer);
+            }
+        });
+
+        document.getElementById('next-layer').addEventListener('click', () => {
+            if (currentLayer < builds[currentBuild].layers.length - 1) {
+                currentLayer++;
+                if (activeMarker) {
+                    activeMarker.classList.remove('active');
+                    blockInfo.style.display = 'none';
+                    activeMarker = null;
+                }
+                renderLayer(currentLayer);
+            }
+        });
+
+        // Close viewer
+        document.getElementById('close-viewer').addEventListener('click', () => {
+            viewerModal.style.display = 'none';
+        });
+
+        // Close info when clicking outside
+        container.addEventListener('click', () => {
+            if (activeMarker) {
+                activeMarker.classList.remove('active');
+                blockInfo.style.display = 'none';
+                activeMarker = null;
+            }
+        });
+
+        // Connect build cards to viewer
+        document.querySelectorAll('.build-card').forEach(card => {
+            card.addEventListener('click', function() {
+                currentBuild = this.getAttribute('data-schematic');
+                if (builds[currentBuild]) {
+                    currentLayer = 0;
+                    viewerModal.style.display = 'block';
+                    renderLayer(0);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
