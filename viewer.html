@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Build Viewer</title>
+    <style>
+        body { font-family: Arial; margin: 0; padding: 20px; }
+        #screenshot-container { position: relative; margin: 20px auto; }
+        .layer-image { max-width: 100%; border: 2px solid #4CAF50; }
+        .block-marker {
+            position: absolute; width: 30px; height: 30px;
+            background: rgba(255,255,0,0.3); border: 2px dashed red;
+            border-radius: 50%; cursor: help;
+        }
+    </style>
+</head>
+<body>
+    <div id="screenshot-container"></div>
+    <script>
+        // Get schematic name from URL
+        const schematic = new URLSearchParams(window.location.search).get('schematic');
+        document.title = `${schematic} Viewer`;
+        
+        // Demo content (replace with your layer images)
+        document.getElementById('screenshot-container').innerHTML = `
+            <img src="images/${schematic.replace('.schem','-layer0.jpg')}" class="layer-image">
+            <div class="block-marker" style="left:15%;top:30%" 
+                 title="Oak Stairs | Facing: North, Half: Top"></div>
+        `;
+    </script>
+</body>
+</html>
