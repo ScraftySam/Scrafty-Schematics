@@ -25,3 +25,6 @@ Violations will be reported under:
 1. Download schematic files
 2. Follow in-game tutorials
 3. Enjoy in your private worlds!
+
+© 2024 Scrafty_Sam - All Rights Reserved
+This notice must remain intact in any forks.
