@@ -27,7 +27,7 @@ Violations will be reported under:
 3. Enjoy in your private worlds!
 ```
 Credit Requirement (Servers):
-Build by Scrafty_Sam | github.com/ScraftySam/Scrafty-Schematics
+Build by Scrafty_Sam | https://scrafty-schematics.netlify.app/
 
 © 2025 Scrafty_Sam - All Rights Reserved
 This notice must remain intact in any forks.
