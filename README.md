@@ -21,18 +21,7 @@ Violations will be reported under:
 - Minecraft's [Content Guidelines](https://www.minecraft.net/en-us/terms)
 
 ## 💻 Usage
-```bash
-# For personal/educational purposes only
+```txt
 1. Download schematic files
 2. Follow in-game tutorials
 3. Enjoy in your private worlds!
-
-*(For personal/educational purposes only)*
-
-## 🌟 Support  
-Found this helpful? Support my work:  
-- [Instagram](https://www.instagram.com/scrafty_sam/) | [tiktok](https://www.tiktok.com/@scrafty_sam)
-
----  
-*© 2024 Scrafty_Sam - All Rights Reserved*  
-*This notice must remain intact in any forks.*
