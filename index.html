@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scrafty_Sam's Builds & Schematics</title>
+    <style>
+        /* === GLOBAL STYLES === */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* === HEADER === */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #4CAF50, #2E8B57);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* === BUILD GRID === */
+        .build-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .build-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .build-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .thumbnail {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 2px solid #4CAF50;
+        }
+        
+        .build-info {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .build-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        
+        .build-category {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin: 5px;
+        }
+        
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <h1>Scrafty_Sam's Builds & Schematics</h1>
+            <p>Click a build to view layer-by-layer instructions!</p>
+        </div>
+    </header>
+    
+    <!-- BUILD GALLERY -->
+    <div class="container">
+        <div class="build-grid">
+            <!-- Build 1 -->
+            <div class="build-card" data-schematic="fantasy-castle.schem">
+                <img src="https://via.placeholder.com/300x180?text=Fantasy+Castle" class="thumbnail" alt="Fantasy Castle">
+                <div class="build-info">
+                    <div class="build-name">Fantasy Castle</div>
+                    <div>
+                        <span class="build-category">Fantasy</span>
+                        <span class="build-category">Castle</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Build 2 -->
+            <div class="build-card" data-schematic="medieval-tavern.schem">
+                <img src="https://via.placeholder.com/300x180?text=Medieval+Tavern" class="thumbnail" alt="Medieval Tavern">
+                <div class="build-info">
+                    <div class="build-name">Medieval Tavern</div>
+                    <div>
+                        <span class="build-category">Medieval</span>
+                        <span class="build-category">Survival</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Build 3 -->
+            <div class="build-card" data-schematic="modern-mansion.schem">
+                <img src="https://via.placeholder.com/300x180?text=Modern+Mansion" class="thumbnail" alt="Modern Mansion">
+                <div class="build-info">
+                    <div class="build-name">Modern Mansion</div>
+                    <div>
+                        <span class="build-category">Modern</span>
+                        <span class="build-category">Creative</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Build 4 -->
+            <div class="build-card" data-schematic="steampunk-airship.schem">
+                <img src="https://via.placeholder.com/300x180?text=Steampunk+Airship" class="thumbnail" alt="Steampunk Airship">
+                <div class="build-info">
+                    <div class="build-name">Steampunk Airship</div>
+                    <div>
+                        <span class="build-category">Steampunk</span>
+                        <span class="build-category">Fantasy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Scrafty_Sam's Builds | Made with ♥ for Minecraft</p>
+        </div>
+    </footer>
+
+    <script>
+        // Connect each build to its viewer
+        document.querySelectorAll('.build-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const schematicFile = this.getAttribute('data-schematic');
+                window.open(`viewer.html?schematic=${schematicFile}`, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
