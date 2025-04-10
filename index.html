@@ -7,451 +7,68 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* === GLOBAL STYLES === */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #1e1e1e url('https://i.imgur.com/XBQYKR7.png');
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1;
-        }
-        
-        /* === MINECRAFT BANNER HEADER === */
-        header {
-            background: url('https://i.imgur.com/KmiORQe.png') center/cover;
-            padding: 80px 0;
-            text-align: center;
-            position: relative;
-            border-bottom: 8px solid #158A92;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        
-        .minecraft-banner {
-            background: rgba(0, 0, 0, 0.7);
-            display: inline-block;
-            padding: 30px 60px;
-            border: 4px solid #158A92;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .golden-title {
-            font-family: 'Press Start 2P', cursive;
-            color: #FFD700;
-            font-size: 2.2rem;
-            text-shadow: 
-                3px 3px 0 #8B7500,
-                6px 6px 10px rgba(0, 0, 0, 0.5);
-            margin: 0;
-            line-height: 1.3;
-            letter-spacing: 2px;
-        }
-        
-        .subtitle {
-            font-family: 'Press Start 2P', cursive;
-            color: #FFD700;
-            font-size: 0.9rem;
-            text-shadow: 
-                2px 2px 0 #8B7500,
-                4px 4px 6px rgba(0, 0, 0, 0.5);
-            margin: 15px 0 0;
-        }
-        
-        /* === BUILD GRID === */
-        .build-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .build-card {
-            background: #2d2d2d;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: pointer;
-            position: relative;
-            border: 2px solid #158A92;
-        }
-        
-        .build-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 14px 28px rgba(21,138,146,0.3), 0 10px 10px rgba(0,0,0,0.22);
-            border-color: #1FCBDA;
-        }
-        
-        .thumbnail {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-bottom: 3px solid #158A92;
-            background: linear-gradient(45deg, #3a3a3a 0%, #2d2d2d 100%);
-        }
-        
-        .build-info {
-            padding: 15px;
-            padding-bottom: 25px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .build-name {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin: 10px 0;
-            color: #FFD700;
-            font-family: 'Press Start 2P', cursive;
-            text-shadow: 2px 2px 0 #8B7500;
-        }
-        
-        .build-category {
-            display: inline-block;
-            background: #158A92;
-            color: #FFD700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            margin: 5px;
-            font-family: 'Press Start 2P', cursive;
-            text-shadow: 1px 1px 0 #000;
-            border: 1px solid #1FCBDA;
-        }
-
-        /* === VIEWER STYLES === */
-        #viewer-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        #viewer-container {
-            max-width: 900px;
-            margin: 20px auto;
-            background: #2d2d2d;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: relative;
-            color: #fff;
-        }
-
-        #close-viewer {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ff4444;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            font-size: 16px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        #viewer-container h1 {
-            color: #FFD700;
-            font-family: 'Press Start 2P', cursive;
-            text-shadow: 2px 2px 0 #8B7500;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .layer-image-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-
-        .layer-image {
-            max-width: 100%;
+        /* [Keep all your existing CSS styles] */
+        /* Add these new styles for the block list */
+        .block-list {
+            background: #2a2a2a;
             border: 2px solid #4CAF50;
-            border-radius: 5px;
-            display: block;
-            transition: transform 0.3s;
-            cursor: zoom-in;
-        }
-
-        .layer-image.zoomed {
-            transform: scale(1.5);
-            cursor: zoom-out;
-        }
-
-        .block-marker {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: rgba(255,255,0,0.3);
-            border: 2px dashed red;
-            border-radius: 50%;
-            cursor: help;
-            transition: all 0.2s;
-        }
-
-        .block-marker:hover {
-            background: rgba(255,255,0,0.5);
-            transform: scale(1.1);
-        }
-
-        .block-marker.active {
-            background: rgba(255,255,0,0.7);
-            border: 2px solid red;
-            z-index: 10;
-        }
-
-        .viewer-btn {
-            padding: 10px 20px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.2s;
-            margin: 0 5px;
-        }
-
-        .viewer-btn:hover {
-            background: #3e8e41;
-        }
-
-        .viewer-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-        }
-
-        .layer-indicator {
-            font-weight: bold;
-            color: #4CAF50;
-            font-size: 1.2em;
-            margin: 10px 0;
-            text-align: center;
-            font-family: 'Press Start 2P', cursive;
-        }
-
-        #block-info {
-            display: none;
-            min-height: 60px;
+            border-radius: 8px;
             padding: 15px;
-            background: #3a3a3a;
-            border-radius: 5px;
             margin-top: 20px;
-            text-align: left;
-            font-family: monospace;
-            white-space: pre-wrap;
-            position: relative;
-            color: #fff;
-            border: 1px solid #4CAF50;
-        }
-
-        #close-info {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: #ff4444;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            font-size: 12px;
-            line-height: 12px;
-        }
-
-        .viewer-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 15px 0;
-        }
-
-        .layer-thumbnails {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding: 10px 0;
-            margin: 15px 0;
-        }
-
-        .layer-thumbnail {
-            width: 80px;
-            height: 60px;
-            object-fit: cover;
-            border: 2px solid #3a3a3a;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .layer-thumbnail:hover {
-            border-color: #4CAF50;
-        }
-
-        .layer-thumbnail.active {
-            border-color: #FFD700;
-            transform: scale(1.05);
-        }
-
-        .download-btn {
-            background: #158A92;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-            transition: all 0.2s;
-        }
-
-        .download-btn:hover {
-            background: #1FCBDA;
-        }
-
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-            color: #FFD700;
-            font-size: 1.2em;
-        }
-
-        .loading i {
-            margin-right: 10px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            font-family: 'Arial', sans-serif;
         }
         
-        /* === FOOTER === */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #1a1a1a;
+        .block-list h3 {
             color: #FFD700;
-            border-top: 4px solid #158A92;
             font-family: 'Press Start 2P', cursive;
-            margin-top: auto;
+            font-size: 0.9rem;
+            margin: 0 0 10px 0;
+            text-align: center;
         }
         
-        /* === RESPONSIVE ADJUSTMENTS === */
-        @media (max-width: 768px) {
-            .golden-title {
-                font-size: 1.5rem;
-            }
-            .subtitle {
-                font-size: 0.7rem;
-            }
-            .minecraft-banner {
-                padding: 20px 30px;
-            }
-            .build-grid {
-                grid-template-columns: 1fr;
-            }
-            #viewer-container {
-                padding: 10px;
-                width: 95%;
-            }
-            .viewer-controls {
-                flex-direction: column;
-                gap: 10px;
-            }
+        .block-list ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .block-list li {
+            background: #3a3a3a;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .block-type {
+            color: #1FCBDA;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+        
+        .block-quantity {
+            color: #FFD700;
+            margin-left: 5px;
+        }
+        
+        .block-notes {
+            color: #aaa;
+            font-size: 0.8em;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .viewer-controls {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="container">
-            <div class="minecraft-banner">
-                <h1 class="golden-title">Scrafty_Sam's Builds & Schematics</h1>
-                <p class="subtitle">Click a build to view layer-by-layer instructions!</p>
-            </div>
-        </div>
-    </header>
+    <!-- [Keep all your existing HTML structure] -->
     
-    <!-- BUILD GALLERY -->
-    <div class="container">
-        <div class="build-grid">
-            <!-- Wood Cabin (New First Build) -->
-            <div class="build-card" data-schematic="wood-cabin">
-                <img src="images/wood-cabin/thumbnail.png" class="thumbnail" alt="Wood Cabin">
-                <div class="build-info">
-                    <div class="build-name">Wood Cabin</div>
-                    <div>
-                        <span class="build-category">Survival</span>
-                        <span class="build-category">Cabin</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Medieval Tavern -->
-            <div class="build-card" data-schematic="medieval-tavern">
-                <img src="https://via.placeholder.com/300x180?text=Medieval+Tavern" class="thumbnail" alt="Medieval Tavern">
-                <div class="build-info">
-                    <div class="build-name">Medieval Tavern</div>
-                    <div>
-                        <span class="build-category">Medieval</span>
-                        <span class="build-category">Survival</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modern Mansion -->
-            <div class="build-card" data-schematic="modern-mansion">
-                <img src="https://via.placeholder.com/300x180?text=Modern+Mansion" class="thumbnail" alt="Modern Mansion">
-                <div class="build-info">
-                    <div class="build-name">Modern Mansion</div>
-                    <div>
-                        <span class="build-category">Modern</span>
-                        <span class="build-category">Creative</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Steampunk Airship -->
-            <div class="build-card" data-schematic="steampunk-airship">
-                <img src="https://via.placeholder.com/300x180?text=Steampunk+Airship" class="thumbnail" alt="Steampunk Airship">
-                <div class="build-info">
-                    <div class="build-name">Steampunk Airship</div>
-                    <div>
-                        <span class="build-category">Steampunk</span>
-                        <span class="build-category">Fantasy</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- SCHEMATIC VIEWER MODAL -->
+    <!-- Updated Viewer Modal -->
     <div id="viewer-modal">
         <div id="viewer-container">
             <button id="close-viewer">×</button>
@@ -464,15 +81,14 @@
                 </div>
             </div>
             
-            <div class="layer-thumbnails" id="layer-thumbnails">
-                <!-- Thumbnails will be added here -->
+            <div id="block-list-container" class="block-list">
+                <!-- Block list will appear here -->
             </div>
             
             <div class="viewer-controls">
                 <div>
                     <button id="prev-layer" class="viewer-btn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
                     <button id="next-layer" class="viewer-btn">Next <i class="fas fa-arrow-right"></i></button>
-                    <button id="toggle-view" class="viewer-btn">Switch to Isometric View</button>
                 </div>
                 <div>
                     <a id="download-schematic" class="download-btn" href="#" download>
@@ -480,20 +96,10 @@
                     </a>
                 </div>
             </div>
-            
-            <div id="block-info">
-                <button id="close-info">×</button>
-                <!-- Block details will appear here -->
-            </div>
         </div>
     </div>
     
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p>© 2025 Scrafty_Sam's Builds | Made with ♥ for Minecraft</p>
-        </div>
-    </footer>
+    <!-- [Keep your existing footer] -->
 
     <script>
         // ===== BUILD DATA =====
@@ -501,221 +107,81 @@
             "wood-cabin": {
                 name: "Wood Cabin",
                 description: "A cozy survival-friendly wood cabin with detailed layering",
-                layers: Array.from({ length: 10 }, (_, i) => ({
-                    topView: `images/wood-cabin/Wood_hut_${i}.png`,
-                    isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
-                    blocks: i === 0 ? [ // Example markers for Layer 0
-                        {
-                            x: 37, y: 67,       // Top-view position (%)
-                            xIso: 40, yIso: 60, // Isometric position (%)
-                            type: "Farmland",
-                            state: "none",
-                            notes: "4x4 area"
-                        },
-                    ] : []
-                })),
+                layers: [
+                    // Layer 0 - Foundation
+                    {
+                        topView: "images/wood-cabin/Wood_hut_0.png",
+                        isoView: "images/wood-cabin/Wood_hut_0.1.png",
+                        blocksUsed: [
+                            { type: "oak_log", quantity: 12, notes: "Corner posts" },
+                            { type: "cobblestone", quantity: 45, notes: "Foundation" },
+                            { type: "dirt", quantity: 32, notes: "Landscaping" }
+                        ]
+                    },
+                    // Layer 1 - Flooring
+                    {
+                        topView: "images/wood-cabin/Wood_hut_1.png",
+                        isoView: "images/wood-cabin/Wood_hut_1.1.png",
+                        blocksUsed: [
+                            { type: "spruce_planks", quantity: 64, notes: "Main floor" },
+                            { type: "oak_stairs", quantity: 8, notes: "Entry steps" }
+                        ]
+                    },
+                    // Continue for all 10 layers...
+                    // Layer 9 - Roof details
+                    {
+                        topView: "images/wood-cabin/Wood_hut_9.png",
+                        isoView: "images/wood-cabin/Wood_hut_9.1.png",
+                        blocksUsed: [
+                            { type: "spruce_stairs", quantity: 24, notes: "Roof framing" },
+                            { type: "spruce_slab", quantity: 18, notes: "Roof details" }
+                        ]
+                    }
+                ],
                 schematic: "downloads/wood-cabin.schem"
             },
-            "medieval-tavern": {
-                name: "Medieval Tavern",
-                layers: [
-                    {
-                        topView: "images/medieval-tavern/layer-0-top.jpg",
-                        isoView: "images/medieval-tavern/layer-0-iso.jpg",
-                        blocks: []
-                    }
-                ],
-                schematic: "downloads/medieval-tavern.schem"
-            },
-            "modern-mansion": {
-                name: "Modern Mansion",
-                layers: [
-                    {
-                        topView: "images/modern-mansion/layer-0-top.jpg",
-                        isoView: "images/modern-mansion/layer-0-iso.jpg",
-                        blocks: []
-                    }
-                ],
-                schematic: "downloads/modern-mansion.schem"
-            },
-            "steampunk-airship": {
-                name: "Steampunk Airship",
-                layers: [
-                    {
-                        topView: "images/steampunk-airship/layer-0-top.jpg",
-                        isoView: "images/steampunk-airship/layer-0-iso.jpg",
-                        blocks: []
-                    }
-                ],
-                schematic: "downloads/steampunk-airship.schem"
-            }
+            // Other builds...
         };
 
-        // ===== VIEWER CODE =====
+        // ===== SIMPLIFIED VIEWER CODE =====
         let currentBuild = null;
         let currentLayer = 0;
-        let currentView = 'top'; // 'top' or 'iso'
-        let activeMarker = null;
         const container = document.getElementById('screenshot-container');
-        const blockInfo = document.getElementById('block-info');
-        const layerIndicator = document.getElementById('current-layer');
-        const totalLayersIndicator = document.getElementById('total-layers');
+        const blockListContainer = document.getElementById('block-list-container');
         const viewerModal = document.getElementById('viewer-modal');
         const buildTitle = document.getElementById('build-viewer-title');
-        const downloadBtn = document.getElementById('download-schematic');
-        const layerThumbnails = document.getElementById('layer-thumbnails');
-        const toggleViewBtn = document.getElementById('toggle-view');
+        const layerIndicator = document.getElementById('current-layer');
+        const totalLayersIndicator = document.getElementById('total-layers');
 
         function renderLayer(layerIndex) {
-            container.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i> Loading layer...</div>';
             const layer = builds[currentBuild].layers[layerIndex];
             if (!layer) return;
+
+            // Load image
+            container.innerHTML = `<img src="${layer.topView}" class="layer-image" alt="Layer ${layerIndex}">`;
             
-            currentLayer = layerIndex;
+            // Render block list
+            blockListContainer.innerHTML = `
+                <h3><i class="fas fa-cubes"></i> Blocks Needed</h3>
+                <ul>
+                    ${layer.blocksUsed.map(block => `
+                        <li>
+                            <span class="block-type">${block.type.replace(/_/g, ' ')}</span>
+                            <span class="block-quantity">×${block.quantity}</span>
+                            ${block.notes ? `<div class="block-notes">${block.notes}</div>` : ''}
+                        </li>
+                    `).join('')}
+                </ul>
+            `;
+            
+            // Update layer indicator
             layerIndicator.textContent = layerIndex;
             totalLayersIndicator.textContent = builds[currentBuild].layers.length - 1;
-            
-            // Load screenshot
-            const img = document.createElement('img');
-            img.src = currentView === 'top' ? layer.topView : layer.isoView;
-            img.className = 'layer-image';
-            img.alt = `Layer ${layerIndex} ${currentView} view`;
-            
-            img.onload = function() {
-                container.innerHTML = '';
-                container.appendChild(img);
-                
-                // Add interactive markers
-                layer.blocks.forEach(block => {
-                    const marker = document.createElement('div');
-                    marker.className = 'block-marker';
-                    const x = currentView === 'top' ? block.x : block.xIso;
-                    const y = currentView === 'top' ? block.y : block.yIso;
-                    marker.style.left = `${x}%`;
-                    marker.style.top = `${y}%`;
-                    
-                    marker.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        
-                        if (activeMarker === marker) {
-                            marker.classList.remove('active');
-                            blockInfo.style.display = 'none';
-                            activeMarker = null;
-                        } else {
-                            if (activeMarker) activeMarker.classList.remove('active');
-                            
-                            marker.classList.add('active');
-                            blockInfo.innerHTML = `
-                                <button id="close-info">×</button>
-                                <strong>${block.type.toUpperCase().replace(/_/g, ' ')}</strong>
-                                ----------------------
-                                State: ${block.state}
-                                Notes: ${block.notes}
-                                Layer: ${layerIndex}
-                                View: ${currentView === 'top' ? 'Top-Down' : 'Isometric'}
-                            `;
-                            blockInfo.style.display = 'block';
-                            activeMarker = marker;
-                            
-                            document.getElementById('close-info').addEventListener('click', (e) => {
-                                e.stopPropagation();
-                                blockInfo.style.display = 'none';
-                                marker.classList.remove('active');
-                                activeMarker = null;
-                            });
-                        }
-                    });
-                    
-                    container.appendChild(marker);
-                });
-                
-                // Update thumbnail active state
-                updateThumbnailActiveState();
-            };
-            
-            img.onerror = function() {
-                container.innerHTML = '<div class="error">Failed to load layer image</div>';
-            };
-            
-            // Zoom functionality
-            img.addEventListener('click', function() {
-                this.classList.toggle('zoomed');
-            });
             
             // Update navigation buttons
             document.getElementById('prev-layer').disabled = layerIndex === 0;
             document.getElementById('next-layer').disabled = layerIndex === builds[currentBuild].layers.length - 1;
         }
-
-        function updateThumbnailActiveState() {
-            const thumbnails = document.querySelectorAll('.layer-thumbnail');
-            thumbnails.forEach((thumb, index) => {
-                thumb.classList.toggle('active', index === currentLayer);
-            });
-        }
-
-        function renderThumbnails() {
-            layerThumbnails.innerHTML = '';
-            builds[currentBuild].layers.forEach((layer, index) => {
-                const thumb = document.createElement('img');
-                thumb.src = currentView === 'top' ? layer.topView : layer.isoView;
-                thumb.className = 'layer-thumbnail';
-                thumb.alt = `Layer ${index} thumbnail`;
-                thumb.addEventListener('click', () => {
-                    currentLayer = index;
-                    if (activeMarker) {
-                        activeMarker.classList.remove('active');
-                        blockInfo.style.display = 'none';
-                        activeMarker = null;
-                    }
-                    renderLayer(currentLayer);
-                });
-                layerThumbnails.appendChild(thumb);
-            });
-        }
-
-        // Navigation events
-        document.getElementById('prev-layer').addEventListener('click', () => {
-            if (currentLayer > 0) {
-                currentLayer--;
-                if (activeMarker) {
-                    activeMarker.classList.remove('active');
-                    blockInfo.style.display = 'none';
-                    activeMarker = null;
-                }
-                renderLayer(currentLayer);
-            }
-        });
-
-        document.getElementById('next-layer').addEventListener('click', () => {
-            if (currentLayer < builds[currentBuild].layers.length - 1) {
-                currentLayer++;
-                if (activeMarker) {
-                    activeMarker.classList.remove('active');
-                    blockInfo.style.display = 'none';
-                    activeMarker = null;
-                }
-                renderLayer(currentLayer);
-            }
-        });
-
-        // Toggle view
-        toggleViewBtn.addEventListener('click', function() {
-            currentView = currentView === 'top' ? 'iso' : 'top';
-            this.textContent = currentView === 'top' ? 'Switch to Isometric View' : 'Switch to Top View';
-            renderThumbnails();
-            renderLayer(currentLayer);
-        });
-
-        // Close viewer
-        document.getElementById('close-viewer').addEventListener('click', () => {
-            viewerModal.style.display = 'none';
-            if (activeMarker) {
-                activeMarker.classList.remove('active');
-                blockInfo.style.display = 'none';
-                activeMarker = null;
-            }
-        });
 
         // Connect build cards to viewer
         document.querySelectorAll('.build-card').forEach(card => {
@@ -723,18 +189,32 @@
                 currentBuild = this.getAttribute('data-schematic');
                 if (builds[currentBuild]) {
                     currentLayer = 0;
-                    currentView = 'top';
                     viewerModal.style.display = 'block';
                     buildTitle.textContent = builds[currentBuild].name;
-                    downloadBtn.href = builds[currentBuild].schematic;
-                    toggleViewBtn.textContent = 'Switch to Isometric View';
-                    renderThumbnails();
+                    document.getElementById('download-schematic').href = builds[currentBuild].schematic;
                     renderLayer(0);
-                    
-                    // Update total layers indicator
-                    totalLayersIndicator.textContent = builds[currentBuild].layers.length - 1;
                 }
             });
+        });
+
+        // Navigation events
+        document.getElementById('prev-layer').addEventListener('click', () => {
+            if (currentLayer > 0) {
+                currentLayer--;
+                renderLayer(currentLayer);
+            }
+        });
+
+        document.getElementById('next-layer').addEventListener('click', () => {
+            if (currentLayer < builds[currentBuild].layers.length - 1) {
+                currentLayer++;
+                renderLayer(currentLayer);
+            }
+        });
+
+        // Close viewer
+        document.getElementById('close-viewer').addEventListener('click', () => {
+            viewerModal.style.display = 'none';
         });
 
         // Keyboard navigation
@@ -748,8 +228,6 @@
                     renderLayer(currentLayer);
                 } else if (e.key === 'Escape') {
                     viewerModal.style.display = 'none';
-                } else if (e.key === 'v') {
-                    toggleViewBtn.click();
                 }
             }
         });
