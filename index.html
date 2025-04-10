@@ -7,15 +7,209 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* [Keep all your existing CSS styles] */
-        /* Add these new styles for the block list */
+        /* === GLOBAL STYLES === */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #1e1e1e url('https://i.imgur.com/XBQYKR7.png');
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        
+        /* === MINECRAFT BANNER HEADER === */
+        header {
+            background: url('https://i.imgur.com/KmiORQe.png') center/cover;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            border-bottom: 8px solid #158A92;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        
+        .minecraft-banner {
+            background: rgba(0, 0, 0, 0.7);
+            display: inline-block;
+            padding: 30px 60px;
+            border: 4px solid #158A92;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .golden-title {
+            font-family: 'Press Start 2P', cursive;
+            color: #FFD700;
+            font-size: 2.2rem;
+            text-shadow: 
+                3px 3px 0 #8B7500,
+                6px 6px 10px rgba(0, 0, 0, 0.5);
+            margin: 0;
+            line-height: 1.3;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-family: 'Press Start 2P', cursive;
+            color: #FFD700;
+            font-size: 0.9rem;
+            text-shadow: 
+                2px 2px 0 #8B7500,
+                4px 4px 6px rgba(0, 0, 0, 0.5);
+            margin: 15px 0 0;
+        }
+        
+        /* === BUILD GRID === */
+        .build-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .build-card {
+            background: #2d2d2d;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            position: relative;
+            border: 2px solid #158A92;
+        }
+        
+        .build-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 14px 28px rgba(21,138,146,0.3), 0 10px 10px rgba(0,0,0,0.22);
+            border-color: #1FCBDA;
+        }
+        
+        .thumbnail {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 3px solid #158A92;
+            background: linear-gradient(45deg, #3a3a3a 0%, #2d2d2d 100%);
+        }
+        
+        .build-info {
+            padding: 15px;
+            padding-bottom: 25px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .build-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #FFD700;
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 2px 2px 0 #8B7500;
+        }
+        
+        .build-category {
+            display: inline-block;
+            background: #158A92;
+            color: #FFD700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin: 5px;
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 1px 1px 0 #000;
+            border: 1px solid #1FCBDA;
+        }
+
+        /* === VIEWER STYLES === */
+        #viewer-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        #viewer-container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #2d2d2d;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            color: #fff;
+        }
+
+        #close-viewer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        #viewer-container h1 {
+            color: #FFD700;
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 2px 2px 0 #8B7500;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .layer-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .layer-image {
+            max-width: 100%;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            display: block;
+        }
+
+        .layer-indicator {
+            font-weight: bold;
+            color: #4CAF50;
+            font-size: 1.2em;
+            margin: 10px 0;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        /* NEW BLOCK LIST STYLES */
         .block-list {
             background: #2a2a2a;
             border: 2px solid #4CAF50;
             border-radius: 8px;
             padding: 15px;
             margin-top: 20px;
-            font-family: 'Arial', sans-serif;
         }
         
         .block-list h3 {
@@ -59,16 +253,173 @@
             margin-top: 5px;
             font-style: italic;
         }
-        
+
+        .viewer-btn {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+            margin: 0 5px;
+        }
+
+        .viewer-btn:hover {
+            background: #3e8e41;
+        }
+
+        .viewer-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
         .viewer-controls {
-            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .download-btn {
+            background: #158A92;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #1FCBDA;
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            color: #FFD700;
+            font-size: 1.2em;
+        }
+
+        .loading i {
+            margin-right: 10px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #FFD700;
+            border-top: 4px solid #158A92;
+            font-family: 'Press Start 2P', cursive;
+            margin-top: auto;
+        }
+        
+        /* === RESPONSIVE ADJUSTMENTS === */
+        @media (max-width: 768px) {
+            .golden-title {
+                font-size: 1.5rem;
+            }
+            .subtitle {
+                font-size: 0.7rem;
+            }
+            .minecraft-banner {
+                padding: 20px 30px;
+            }
+            .build-grid {
+                grid-template-columns: 1fr;
+            }
+            #viewer-container {
+                padding: 10px;
+                width: 95%;
+            }
+            .viewer-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .block-list ul {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- [Keep all your existing HTML structure] -->
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="minecraft-banner">
+                <h1 class="golden-title">Scrafty_Sam's Builds & Schematics</h1>
+                <p class="subtitle">Click a build to view layer-by-layer instructions!</p>
+            </div>
+        </div>
+    </header>
     
-    <!-- Updated Viewer Modal -->
+    <!-- BUILD GALLERY -->
+    <div class="container">
+        <div class="build-grid">
+            <!-- Wood Cabin -->
+            <div class="build-card" data-schematic="wood-cabin">
+                <img src="images/wood-cabin/thumbnail.png" class="thumbnail" alt="Wood Cabin">
+                <div class="build-info">
+                    <div class="build-name">Wood Cabin</div>
+                    <div>
+                        <span class="build-category">Survival</span>
+                        <span class="build-category">Cabin</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Medieval Tavern -->
+            <div class="build-card" data-schematic="medieval-tavern">
+                <img src="https://via.placeholder.com/300x180?text=Medieval+Tavern" class="thumbnail" alt="Medieval Tavern">
+                <div class="build-info">
+                    <div class="build-name">Medieval Tavern</div>
+                    <div>
+                        <span class="build-category">Medieval</span>
+                        <span class="build-category">Survival</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modern Mansion -->
+            <div class="build-card" data-schematic="modern-mansion">
+                <img src="https://via.placeholder.com/300x180?text=Modern+Mansion" class="thumbnail" alt="Modern Mansion">
+                <div class="build-info">
+                    <div class="build-name">Modern Mansion</div>
+                    <div>
+                        <span class="build-category">Modern</span>
+                        <span class="build-category">Creative</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Steampunk Airship -->
+            <div class="build-card" data-schematic="steampunk-airship">
+                <img src="https://via.placeholder.com/300x180?text=Steampunk+Airship" class="thumbnail" alt="Steampunk Airship">
+                <div class="build-info">
+                    <div class="build-name">Steampunk Airship</div>
+                    <div>
+                        <span class="build-category">Steampunk</span>
+                        <span class="build-category">Fantasy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SCHEMATIC VIEWER MODAL -->
     <div id="viewer-modal">
         <div id="viewer-container">
             <button id="close-viewer">×</button>
@@ -99,7 +450,12 @@
         </div>
     </div>
     
-    <!-- [Keep your existing footer] -->
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Scrafty_Sam's Builds | Made with ♥ for Minecraft</p>
+        </div>
+    </footer>
 
     <script>
         // ===== BUILD DATA =====
@@ -127,23 +483,115 @@
                             { type: "oak_stairs", quantity: 8, notes: "Entry steps" }
                         ]
                     },
-                    // Continue for all 10 layers...
-                    // Layer 9 - Roof details
+                    // Layer 2 - Walls
+                    {
+                        topView: "images/wood-cabin/Wood_hut_2.png",
+                        isoView: "images/wood-cabin/Wood_hut_2.1.png",
+                        blocksUsed: [
+                            { type: "spruce_log", quantity: 24, notes: "Wall frames" },
+                            { type: "glass_pane", quantity: 12, notes: "Windows" }
+                        ]
+                    },
+                    // Layer 3 - Interior
+                    {
+                        topView: "images/wood-cabin/Wood_hut_3.png",
+                        isoView: "images/wood-cabin/Wood_hut_3.1.png",
+                        blocksUsed: [
+                            { type: "oak_planks", quantity: 32, notes: "Flooring" },
+                            { type: "furnace", quantity: 1, notes: "Fireplace" }
+                        ]
+                    },
+                    // Layer 4 - Roof Base
+                    {
+                        topView: "images/wood-cabin/Wood_hut_4.png",
+                        isoView: "images/wood-cabin/Wood_hut_4.1.png",
+                        blocksUsed: [
+                            { type: "spruce_stairs", quantity: 36, notes: "Roof base" }
+                        ]
+                    },
+                    // Layer 5 - Roof
+                    {
+                        topView: "images/wood-cabin/Wood_hut_5.png",
+                        isoView: "images/wood-cabin/Wood_hut_5.1.png",
+                        blocksUsed: [
+                            { type: "spruce_slab", quantity: 48, notes: "Roof covering" }
+                        ]
+                    },
+                    // Layer 6 - Details
+                    {
+                        topView: "images/wood-cabin/Wood_hut_6.png",
+                        isoView: "images/wood-cabin/Wood_hut_6.1.png",
+                        blocksUsed: [
+                            { type: "flower_pot", quantity: 2, notes: "Decorations" },
+                            { type: "lantern", quantity: 4, notes: "Lighting" }
+                        ]
+                    },
+                    // Layer 7 - Chimney
+                    {
+                        topView: "images/wood-cabin/Wood_hut_7.png",
+                        isoView: "images/wood-cabin/Wood_hut_7.1.png",
+                        blocksUsed: [
+                            { type: "bricks", quantity: 18, notes: "Chimney" },
+                            { type: "campfire", quantity: 1, notes: "Chimney top" }
+                        ]
+                    },
+                    // Layer 8 - Garden
+                    {
+                        topView: "images/wood-cabin/Wood_hut_8.png",
+                        isoView: "images/wood-cabin/Wood_hut_8.1.png",
+                        blocksUsed: [
+                            { type: "grass_block", quantity: 16, notes: "Lawn" },
+                            { type: "rose_bush", quantity: 6, notes: "Flowers" }
+                        ]
+                    },
+                    // Layer 9 - Final Touches
                     {
                         topView: "images/wood-cabin/Wood_hut_9.png",
                         isoView: "images/wood-cabin/Wood_hut_9.1.png",
                         blocksUsed: [
-                            { type: "spruce_stairs", quantity: 24, notes: "Roof framing" },
-                            { type: "spruce_slab", quantity: 18, notes: "Roof details" }
+                            { type: "torch", quantity: 8, notes: "Exterior lighting" },
+                            { type: "oak_fence", quantity: 12, notes: "Fencing" }
                         ]
                     }
                 ],
                 schematic: "downloads/wood-cabin.schem"
             },
-            // Other builds...
+            "medieval-tavern": {
+                name: "Medieval Tavern",
+                layers: [
+                    {
+                        topView: "images/medieval-tavern/layer-0-top.jpg",
+                        isoView: "images/medieval-tavern/layer-0-iso.jpg",
+                        blocksUsed: [] // Add blocks here later
+                    }
+                ],
+                schematic: "downloads/medieval-tavern.schem"
+            },
+            "modern-mansion": {
+                name: "Modern Mansion",
+                layers: [
+                    {
+                        topView: "images/modern-mansion/layer-0-top.jpg",
+                        isoView: "images/modern-mansion/layer-0-iso.jpg",
+                        blocksUsed: [] // Add blocks here later
+                    }
+                ],
+                schematic: "downloads/modern-mansion.schem"
+            },
+            "steampunk-airship": {
+                name: "Steampunk Airship",
+                layers: [
+                    {
+                        topView: "images/steampunk-airship/layer-0-top.jpg",
+                        isoView: "images/steampunk-airship/layer-0-iso.jpg",
+                        blocksUsed: [] // Add blocks here later
+                    }
+                ],
+                schematic: "downloads/steampunk-airship.schem"
+            }
         };
 
-        // ===== SIMPLIFIED VIEWER CODE =====
+        // ===== VIEWER CODE =====
         let currentBuild = null;
         let currentLayer = 0;
         const container = document.getElementById('screenshot-container');
