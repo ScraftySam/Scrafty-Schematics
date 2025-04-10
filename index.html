@@ -5,6 +5,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* === GLOBAL STYLES === */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -15,6 +16,7 @@
             display: flex;
             flex-direction: column;
         }
+        
         .container {
             width: 90%;
             max-width: 1200px;
@@ -22,6 +24,8 @@
             padding: 20px;
             flex: 1;
         }
+        
+        /* === HEADER === */
         header {
             background: url('https://i.imgur.com/KmiORQe.png') center/cover;
             padding: 80px 0;
@@ -30,31 +34,8 @@
             border-bottom: 8px solid #158A92;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        .minecraft-banner {
-            background: rgba(0, 0, 0, 0.7);
-            display: inline-block;
-            padding: 30px 60px;
-            border: 4px solid #158A92;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .golden-title {
-            font-family: 'Press Start 2P', cursive;
-            color: #FFD700;
-            font-size: 2.2rem;
-            text-shadow: 3px 3px 0 #8B7500, 6px 6px 10px rgba(0, 0, 0, 0.5);
-            margin: 0;
-            line-height: 1.3;
-            letter-spacing: 2px;
-        }
-        .subtitle {
-            font-family: 'Press Start 2P', cursive;
-            color: #FFD700;
-            font-size: 0.9rem;
-            text-shadow: 2px 2px 0 #8B7500, 4px 4px 6px rgba(0, 0, 0, 0.5);
-            margin: 15px 0 0;
-        }
+        
+        /* === BUILD GRID === */
         .build-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -62,6 +43,7 @@
             margin-top: 40px;
             margin-bottom: 40px;
         }
+        
         .build-card {
             background: #2d2d2d;
             border-radius: 8px;
@@ -72,11 +54,13 @@
             position: relative;
             border: 2px solid #158A92;
         }
+        
         .build-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 14px 28px rgba(21,138,146,0.3), 0 10px 10px rgba(0,0,0,0.22);
             border-color: #1FCBDA;
         }
+        
         .thumbnail {
             width: 100%;
             height: 180px;
@@ -84,33 +68,8 @@
             border-bottom: 3px solid #158A92;
             background: linear-gradient(45deg, #3a3a3a 0%, #2d2d2d 100%);
         }
-        .build-info {
-            padding: 15px;
-            padding-bottom: 25px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .build-name {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin: 10px 0;
-            color: #FFD700;
-            font-family: 'Press Start 2P', cursive;
-            text-shadow: 2px 2px 0 #8B7500;
-        }
-        .build-category {
-            display: inline-block;
-            background: #158A92;
-            color: #FFD700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            margin: 5px;
-            font-family: 'Press Start 2P', cursive;
-            text-shadow: 1px 1px 0 #000;
-            border: 1px solid #1FCBDA;
-        }
+        
+        /* === VIEWER STYLES === */
         #viewer-modal {
             display: none;
             position: fixed;
@@ -122,9 +81,9 @@
             z-index: 1000;
             overflow-y: auto;
         }
+
         #viewer-container {
-            display: grid;
-            grid-template-columns: 1fr 300px;
+            display: flex;
             max-width: 1200px;
             margin: 20px auto;
             background: #2d2d2d;
@@ -132,50 +91,66 @@
             overflow: hidden;
             position: relative;
         }
+
         #viewer-content {
+            flex: 1;
             padding: 20px;
         }
+
         #materials-sidebar {
+            width: 300px;
             background: #3a3a3a;
             padding: 20px;
             border-left: 2px solid #4CAF50;
-            transition: all 0.3s;
         }
-        #materials-sidebar.collapsed {
-            width: 0;
-            padding: 0;
-            overflow: hidden;
-            border-left: none;
-        }
-        #toggle-sidebar {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            z-index: 10;
-        }
+
         .layer-image-container {
             position: relative;
             margin-bottom: 15px;
         }
+
         .layer-image {
             max-width: 100%;
             border: 2px solid #4CAF50;
             border-radius: 5px;
         }
+
         .layer-indicator {
             font-weight: bold;
             color: #4CAF50;
             font-size: 1.2em;
             margin: 10px 0;
             font-family: 'Press Start 2P', cursive;
+            text-align: center;
         }
+
+        .viewer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .viewer-btn {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .viewer-btn:hover {
+            background: #3e8e41;
+        }
+
+        .viewer-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        /* Materials List */
         .materials-list h3 {
             color: #FFD700;
             font-family: 'Press Start 2P', cursive;
@@ -185,46 +160,31 @@
             align-items: center;
             gap: 8px;
         }
+
         .materials-list ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
+
         .materials-list li {
             padding: 8px 0;
             border-bottom: 1px solid #4a4a4a;
             display: flex;
             justify-content: space-between;
         }
+
         .block-name {
             color: #1FCBDA;
             text-transform: capitalize;
         }
+
         .block-quantity {
             color: #FFD700;
             font-family: monospace;
         }
-        .viewer-controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .viewer-btn {
-            padding: 8px 16px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .viewer-btn:hover {
-            background: #3e8e41;
-        }
-        .viewer-btn:disabled {
-            background: #666;
-            cursor: not-allowed;
-        }
+
+        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -234,25 +194,22 @@
             font-family: 'Press Start 2P', cursive;
             margin-top: auto;
         }
+
+        /* Responsive */
         @media (max-width: 768px) {
             #viewer-container {
-                grid-template-columns: 1fr;
+                flex-direction: column;
             }
             #materials-sidebar {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                height: 200px;
-                z-index: 100;
-            }
-            #materials-sidebar.collapsed {
-                height: 0;
+                width: 100%;
+                border-left: none;
+                border-top: 2px solid #4CAF50;
             }
         }
     </style>
 </head>
 <body>
+    <!-- HEADER -->
     <header>
         <div class="container">
             <div class="minecraft-banner">
@@ -262,8 +219,10 @@
         </div>
     </header>
     
+    <!-- BUILD GALLERY -->
     <div class="container">
         <div class="build-grid">
+            <!-- Wood Cabin -->
             <div class="build-card" data-schematic="wood-cabin">
                 <img src="images/wood-cabin/thumbnail.png" class="thumbnail" alt="Wood Cabin">
                 <div class="build-info">
@@ -275,49 +234,15 @@
                 </div>
             </div>
             
-            <div class="build-card" data-schematic="medieval-tavern">
-                <img src="https://via.placeholder.com/300x180?text=Medieval+Tavern" class="thumbnail" alt="Medieval Tavern">
-                <div class="build-info">
-                    <div class="build-name">Medieval Tavern</div>
-                    <div>
-                        <span class="build-category">Medieval</span>
-                        <span class="build-category">Survival</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="build-card" data-schematic="modern-mansion">
-                <img src="https://via.placeholder.com/300x180?text=Modern+Mansion" class="thumbnail" alt="Modern Mansion">
-                <div class="build-info">
-                    <div class="build-name">Modern Mansion</div>
-                    <div>
-                        <span class="build-category">Modern</span>
-                        <span class="build-category">Creative</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="build-card" data-schematic="steampunk-airship">
-                <img src="https://via.placeholder.com/300x180?text=Steampunk+Airship" class="thumbnail" alt="Steampunk Airship">
-                <div class="build-info">
-                    <div class="build-name">Steampunk Airship</div>
-                    <div>
-                        <span class="build-category">Steampunk</span>
-                        <span class="build-category">Fantasy</span>
-                    </div>
-                </div>
-            </div>
+            <!-- Other build cards... -->
         </div>
     </div>
     
+    <!-- VIEWER MODAL -->
     <div id="viewer-modal">
         <div id="viewer-container">
-            <button id="close-viewer">×</button>
-            <button id="toggle-sidebar" title="Toggle materials list">
-                <i class="fas fa-list"></i>
-            </button>
-            
             <div id="viewer-content">
+                <button id="close-viewer">×</button>
                 <h1 id="build-viewer-title">Build Viewer</h1>
                 <div class="layer-indicator">Layer <span id="current-layer">0</span> of <span id="total-layers">0</span></div>
                 
@@ -328,29 +253,27 @@
                 </div>
                 
                 <div class="viewer-controls">
-                    <div>
-                        <button id="prev-layer" class="viewer-btn" disabled>
-                            <i class="fas fa-arrow-left"></i> Previous
-                        </button>
-                        <button id="next-layer" class="viewer-btn">
-                            Next <i class="fas fa-arrow-right"></i>
-                        </button>
-                        <button id="toggle-view" class="viewer-btn">
-                            <i class="fas fa-sync-alt"></i> Switch View
-                        </button>
-                    </div>
-                    <div>
-                        <a id="download-schematic" class="viewer-btn" href="#" download>
-                            <i class="fas fa-download"></i> Download
-                        </a>
-                    </div>
+                    <button id="prev-layer" class="viewer-btn" disabled>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button id="toggle-view" class="viewer-btn">
+                        <i class="fas fa-sync-alt"></i> Switch View
+                    </button>
+                    <button id="next-layer" class="viewer-btn">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <a id="download-schematic" class="viewer-btn" href="#" download>
+                        <i class="fas fa-download"></i> Download
+                    </a>
                 </div>
             </div>
             
             <div id="materials-sidebar">
                 <div class="materials-list">
                     <h3><i class="fas fa-cubes"></i> Materials Needed</h3>
-                    <ul id="materials-list"></ul>
+                    <ul id="materials-list">
+                        <!-- Materials will appear here -->
+                    </ul>
                 </div>
             </div>
         </div>
@@ -363,84 +286,60 @@
     </footer>
 
     <script>
+        // Build data
         const builds = {
             "wood-cabin": {
                 name: "Wood Cabin",
                 layers: Array.from({ length: 10 }, (_, i) => ({
                     topView: `images/wood-cabin/Wood_hut_${i}.png`,
                     isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
-                    blocksUsed: []
+                    blocksUsed: [
+                        // Add your blocks here for each layer
+                        // Format: { type: "block_id", quantity: 1 }
+                    ]
                 })),
                 schematic: "downloads/wood-cabin.schem"
-            },
-            "medieval-tavern": {
-                name: "Medieval Tavern",
-                layers: [{
-                    topView: "images/medieval-tavern/layer-0-top.jpg",
-                    isoView: "images/medieval-tavern/layer-0-iso.jpg",
-                    blocksUsed: []
-                }],
-                schematic: "downloads/medieval-tavern.schem"
-            },
-            "modern-mansion": {
-                name: "Modern Mansion",
-                layers: [{
-                    topView: "images/modern-mansion/layer-0-top.jpg",
-                    isoView: "images/modern-mansion/layer-0-iso.jpg",
-                    blocksUsed: []
-                }],
-                schematic: "downloads/modern-mansion.schem"
-            },
-            "steampunk-airship": {
-                name: "Steampunk Airship",
-                layers: [{
-                    topView: "images/steampunk-airship/layer-0-top.jpg",
-                    isoView: "images/steampunk-airship/layer-0-iso.jpg",
-                    blocksUsed: []
-                }],
-                schematic: "downloads/steampunk-airship.schem"
             }
+            // Other builds...
         };
 
+        // Viewer functionality
         let currentBuild = null;
         let currentLayer = 0;
-        let currentView = 'top';
-        let sidebarVisible = true;
+        let currentView = 'top'; // 'top' or 'iso'
 
         function renderLayer(layerIndex) {
             const layer = builds[currentBuild].layers[layerIndex];
             if (!layer) return;
 
+            // Set image
             document.getElementById('screenshot-container').innerHTML = `
                 <img src="${currentView === 'top' ? layer.topView : layer.isoView}" 
                      class="layer-image" 
                      alt="Layer ${layerIndex}">
             `;
             
+            // Set materials
             document.getElementById('materials-list').innerHTML = layer.blocksUsed.map(block => `
                 <li>
                     <span class="block-name">${block.type.replace(/_/g, ' ')}</span>
                     <span class="block-quantity">×${block.quantity}</span>
                 </li>
-            `).join('') || '<li>No blocks listed</li>';
+            `).join('') || '<li>No blocks listed for this layer</li>';
             
+            // Update indicators
             document.getElementById('current-layer').textContent = layerIndex;
             document.getElementById('total-layers').textContent = builds[currentBuild].layers.length - 1;
             
+            // Update buttons
             document.getElementById('prev-layer').disabled = layerIndex === 0;
             document.getElementById('next-layer').disabled = layerIndex === builds[currentBuild].layers.length - 1;
         }
 
+        // Event listeners
         document.getElementById('toggle-view').addEventListener('click', () => {
             currentView = currentView === 'top' ? 'iso' : 'top';
             renderLayer(currentLayer);
-        });
-
-        document.getElementById('toggle-sidebar').addEventListener('click', () => {
-            sidebarVisible = !sidebarVisible;
-            document.getElementById('materials-sidebar').classList.toggle('collapsed', !sidebarVisible);
-            document.getElementById('toggle-sidebar').innerHTML = 
-                sidebarVisible ? '<i class="fas fa-list"></i>' : '<i class="fas fa-chevron-left"></i>';
         });
 
         document.querySelectorAll('.build-card').forEach(card => {
@@ -448,10 +347,6 @@
                 currentBuild = this.getAttribute('data-schematic');
                 currentLayer = 0;
                 currentView = 'top';
-                sidebarVisible = true;
-                document.getElementById('materials-sidebar').classList.remove('collapsed');
-                document.getElementById('toggle-sidebar').innerHTML = '<i class="fas fa-list"></i>';
-                
                 document.getElementById('viewer-modal').style.display = 'block';
                 document.getElementById('build-viewer-title').textContent = builds[currentBuild].name;
                 document.getElementById('download-schematic').href = builds[currentBuild].schematic;
@@ -459,6 +354,7 @@
             });
         });
 
+        // Navigation controls
         document.getElementById('prev-layer').addEventListener('click', () => {
             if (currentLayer > 0) {
                 currentLayer--;
@@ -477,6 +373,7 @@
             document.getElementById('viewer-modal').style.display = 'none';
         });
 
+        // Keyboard controls
         document.addEventListener('keydown', (e) => {
             if (document.getElementById('viewer-modal').style.display === 'block') {
                 if (e.key === 'ArrowLeft' && currentLayer > 0) {
@@ -487,8 +384,6 @@
                     renderLayer(currentLayer);
                 } else if (e.key === 'v') {
                     document.getElementById('toggle-view').click();
-                } else if (e.key === 'm') {
-                    document.getElementById('toggle-sidebar').click();
                 } else if (e.key === 'Escape') {
                     document.getElementById('viewer-modal').style.display = 'none';
                 }
