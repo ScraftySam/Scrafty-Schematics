@@ -2,7 +2,9 @@
 <html>
 <head>
     <title>Scrafty_Sam's Builds & Schematics</title>
+    <!-- Minecraft Font -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* === GLOBAL STYLES === */
@@ -25,7 +27,7 @@
             flex: 1;
         }
         
-        /* === HEADER === */
+        /* === MINECRAFT BANNER HEADER === */
         header {
             background: url('https://i.imgur.com/KmiORQe.png') center/cover;
             padding: 80px 0;
@@ -33,6 +35,38 @@
             position: relative;
             border-bottom: 8px solid #158A92;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        
+        .minecraft-banner {
+            background: rgba(0, 0, 0, 0.7);
+            display: inline-block;
+            padding: 30px 60px;
+            border: 4px solid #158A92;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .golden-title {
+            font-family: 'Press Start 2P', cursive;
+            color: #FFD700;
+            font-size: 2.2rem;
+            text-shadow: 
+                3px 3px 0 #8B7500,
+                6px 6px 10px rgba(0, 0, 0, 0.5);
+            margin: 0;
+            line-height: 1.3;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-family: 'Press Start 2P', cursive;
+            color: #FFD700;
+            font-size: 0.9rem;
+            text-shadow: 
+                2px 2px 0 #8B7500,
+                4px 4px 6px rgba(0, 0, 0, 0.5);
+            margin: 15px 0 0;
         }
         
         /* === BUILD GRID === */
@@ -69,6 +103,36 @@
             background: linear-gradient(45deg, #3a3a3a 0%, #2d2d2d 100%);
         }
         
+        .build-info {
+            padding: 15px;
+            padding-bottom: 25px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .build-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #FFD700;
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 2px 2px 0 #8B7500;
+        }
+        
+        .build-category {
+            display: inline-block;
+            background: #158A92;
+            color: #FFD700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin: 5px;
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 1px 1px 0 #000;
+            border: 1px solid #1FCBDA;
+        }
+
         /* === VIEWER STYLES === */
         #viewer-modal {
             display: none;
@@ -104,6 +168,32 @@
             border-left: 2px solid #4CAF50;
         }
 
+        #close-viewer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #build-viewer-title {
+            color: #FFD700;
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 2px 2px 0 #8B7500;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         .layer-image-container {
             position: relative;
             margin-bottom: 15px;
@@ -120,8 +210,8 @@
             color: #4CAF50;
             font-size: 1.2em;
             margin: 10px 0;
-            font-family: 'Press Start 2P', cursive;
             text-align: center;
+            font-family: 'Press Start 2P', cursive;
         }
 
         .viewer-controls {
@@ -139,6 +229,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            transition: all 0.2s;
         }
 
         .viewer-btn:hover {
@@ -148,6 +239,20 @@
         .viewer-btn:disabled {
             background: #666;
             cursor: not-allowed;
+        }
+
+        .download-btn {
+            background: #158A92;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #1FCBDA;
         }
 
         /* Materials List */
@@ -205,6 +310,15 @@
                 border-left: none;
                 border-top: 2px solid #4CAF50;
             }
+            .golden-title {
+                font-size: 1.5rem;
+            }
+            .subtitle {
+                font-size: 0.7rem;
+            }
+            .minecraft-banner {
+                padding: 20px 30px;
+            }
         }
     </style>
 </head>
@@ -234,15 +348,50 @@
                 </div>
             </div>
             
-            <!-- Other build cards... -->
+            <!-- Medieval Tavern -->
+            <div class="build-card" data-schematic="medieval-tavern">
+                <img src="https://via.placeholder.com/300x180?text=Medieval+Tavern" class="thumbnail" alt="Medieval Tavern">
+                <div class="build-info">
+                    <div class="build-name">Medieval Tavern</div>
+                    <div>
+                        <span class="build-category">Medieval</span>
+                        <span class="build-category">Survival</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modern Mansion -->
+            <div class="build-card" data-schematic="modern-mansion">
+                <img src="https://via.placeholder.com/300x180?text=Modern+Mansion" class="thumbnail" alt="Modern Mansion">
+                <div class="build-info">
+                    <div class="build-name">Modern Mansion</div>
+                    <div>
+                        <span class="build-category">Modern</span>
+                        <span class="build-category">Creative</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Steampunk Airship -->
+            <div class="build-card" data-schematic="steampunk-airship">
+                <img src="https://via.placeholder.com/300x180?text=Steampunk+Airship" class="thumbnail" alt="Steampunk Airship">
+                <div class="build-info">
+                    <div class="build-name">Steampunk Airship</div>
+                    <div>
+                        <span class="build-category">Steampunk</span>
+                        <span class="build-category">Fantasy</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
     <!-- VIEWER MODAL -->
     <div id="viewer-modal">
         <div id="viewer-container">
+            <button id="close-viewer">×</button>
+            
             <div id="viewer-content">
-                <button id="close-viewer">×</button>
                 <h1 id="build-viewer-title">Build Viewer</h1>
                 <div class="layer-indicator">Layer <span id="current-layer">0</span> of <span id="total-layers">0</span></div>
                 
@@ -262,8 +411,8 @@
                     <button id="next-layer" class="viewer-btn">
                         Next <i class="fas fa-arrow-right"></i>
                     </button>
-                    <a id="download-schematic" class="viewer-btn" href="#" download>
-                        <i class="fas fa-download"></i> Download
+                    <a id="download-schematic" class="download-btn" href="#" download>
+                        <i class="fas fa-download"></i> Download Schematic
                     </a>
                 </div>
             </div>
@@ -293,14 +442,37 @@
                 layers: Array.from({ length: 10 }, (_, i) => ({
                     topView: `images/wood-cabin/Wood_hut_${i}.png`,
                     isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
-                    blocksUsed: [
-                        // Add your blocks here for each layer
-                        // Format: { type: "block_id", quantity: 1 }
-                    ]
+                    blocksUsed: [] // Add blocks here
                 })),
                 schematic: "downloads/wood-cabin.schem"
+            },
+            "medieval-tavern": {
+                name: "Medieval Tavern",
+                layers: [{
+                    topView: "images/medieval-tavern/layer-0-top.jpg",
+                    isoView: "images/medieval-tavern/layer-0-iso.jpg",
+                    blocksUsed: []
+                }],
+                schematic: "downloads/medieval-tavern.schem"
+            },
+            "modern-mansion": {
+                name: "Modern Mansion",
+                layers: [{
+                    topView: "images/modern-mansion/layer-0-top.jpg",
+                    isoView: "images/modern-mansion/layer-0-iso.jpg",
+                    blocksUsed: []
+                }],
+                schematic: "downloads/modern-mansion.schem"
+            },
+            "steampunk-airship": {
+                name: "Steampunk Airship",
+                layers: [{
+                    topView: "images/steampunk-airship/layer-0-top.jpg",
+                    isoView: "images/steampunk-airship/layer-0-iso.jpg",
+                    blocksUsed: []
+                }],
+                schematic: "downloads/steampunk-airship.schem"
             }
-            // Other builds...
         };
 
         // Viewer functionality
@@ -312,14 +484,12 @@
             const layer = builds[currentBuild].layers[layerIndex];
             if (!layer) return;
 
-            // Set image
             document.getElementById('screenshot-container').innerHTML = `
                 <img src="${currentView === 'top' ? layer.topView : layer.isoView}" 
                      class="layer-image" 
                      alt="Layer ${layerIndex}">
             `;
             
-            // Set materials
             document.getElementById('materials-list').innerHTML = layer.blocksUsed.map(block => `
                 <li>
                     <span class="block-name">${block.type.replace(/_/g, ' ')}</span>
@@ -327,11 +497,9 @@
                 </li>
             `).join('') || '<li>No blocks listed for this layer</li>';
             
-            // Update indicators
             document.getElementById('current-layer').textContent = layerIndex;
             document.getElementById('total-layers').textContent = builds[currentBuild].layers.length - 1;
             
-            // Update buttons
             document.getElementById('prev-layer').disabled = layerIndex === 0;
             document.getElementById('next-layer').disabled = layerIndex === builds[currentBuild].layers.length - 1;
         }
@@ -354,7 +522,6 @@
             });
         });
 
-        // Navigation controls
         document.getElementById('prev-layer').addEventListener('click', () => {
             if (currentLayer > 0) {
                 currentLayer--;
