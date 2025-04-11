@@ -320,6 +320,16 @@
                 padding: 20px 30px;
             }
         }
+
+        /* Added for WIP builds */
+        [data-schematic="wip-build"] {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        [data-schematic="wip-build"]:hover {
+            transform: none !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+        }
     </style>
 </head>
 <body>
@@ -348,7 +358,7 @@
                 </div>
             </div>
             
-            <!-- Medieval Tavern -->
+            <!-- Blackstone Luxury -->
             <div class="build-card" data-schematic="blackstone-luxury">
                 <img src="images/blackstone-luxury/thumbnail.png" class="thumbnail" alt="Blackstone Luxury">
                 <div class="build-info">
@@ -360,9 +370,9 @@
                 </div>
             </div>
             
-            <!-- Modern Mansion -->
+            <!-- Coral Crest Estate -->
             <div class="build-card" data-schematic="coral-crest-estate">
-                <img src="images/coral-crest-mansion/thumbnail.png" class="thumbnail" alt="Coral Crest Estate">
+                <img src="images/coral-crest-estate/thumbnail.png" class="thumbnail" alt="Coral Crest Estate">
                 <div class="build-info">
                     <div class="build-name">Coral Crest Estate</div>
                     <div>
@@ -372,11 +382,11 @@
                 </div>
             </div>
             
-            <!-- Steampunk Airship -->
-            <div class="build-card" data-schematic="placeholder">
-                <img src="images/placeholder/thumbnail.png" class="thumbnail" alt="Steampunk Airship">
+            <!-- WIP Build -->
+            <div class="build-card" data-schematic="wip-build">
+                <img src="images/placeholder/thumbnail.png" class="thumbnail" alt="Coming Soon">
                 <div class="build-info">
-                    <div class="build-name">WIP</div>
+                    <div class="build-name">Coming Soon</div>
                     <div>
                         <span class="build-category">More Builds</span>
                         <span class="build-category">Coming Soon</span>
@@ -421,7 +431,7 @@
                 <div class="materials-list">
                     <h3><i class="fas fa-cubes"></i> Materials Needed</h3>
                     <ul id="materials-list">
-                        <!-- Materials will appear here -->
+                        <li>Select a layer to view materials</li>
                     </ul>
                 </div>
             </div>
@@ -434,127 +444,149 @@
         </div>
     </footer>
 
-    <script>
-    // Build data
-    const builds = {
-        "wood-cabin": {
-            name: "Wood Cabin",
-            layers: Array.from({ length: 10 }, (_, i) => ({
-                topView: `images/wood-cabin/Wood_hut_${i}.png`,
-                isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
-                blocksUsed: [] // Add blocks here
-            })),
-            schematic: "downloads/wood-cabin.schem"
-        },
-        "blackstone-luxury": {
-            name: "Blackstone Luxury",
-            layers: Array.from({ length: 19 }, (_, i) => ({
-                topView: `images/blackstone-luxury/Blackstone_luxury${i}.png`,
-                isoView: `images/blackstone-luxury/Blackstone_luxury${i}.1.png`,
-                blocksUsed: [] // Add blocks here
-            })),
-            schematic: "downloads/blackstone-luxury.schem"
-        },
-        "coral-crest-estate": {
-            name: "Coral Crest Estate",
-            layers: Array.from({ length: 20 }, (_, i) => ({
-                topView: `images/coral-crest-estate/Coral-crest-estate${i}.png`,
-                isoView: `images/coral-crest-estate/Coral-crest-estate${i}.1.png`,
-                blocksUsed: []
-            })),
-            schematic: "downloads/coral-crest-estate.schem"
-        },
-        "placeholder": {
-            name: "Placeholder",
-            layers: Array.from({ length: 20 }, (_, i) => ({
-                topView: `images/placeholder/Placeholder${i}.png`,
-                isoView: `images/placeholder/Placeholder${i}.1.png`,
-                blocksUsed: []
-            })),
-            schematic: "downloads/placeholder.schem"
-        };
+<script>
+// Build data
+const builds = {
+    // ===== FUNCTIONAL BUILDS =====
+    "wood-cabin": {
+        name: "Wood Cabin",
+        layers: Array.from({ length: 10 }, (_, i) => ({
+            topView: `images/wood-cabin/Wood_hut_${i}.png`,
+            isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
+            blocksUsed: []
+        })),
+        schematic: "downloads/wood-cabin.schem"
+    },
+    "blackstone-luxury": {
+        name: "Blackstone Luxury",
+        layers: Array.from({ length: 19 }, (_, i) => ({
+            topView: `images/blackstone-luxury/Blackstone_luxury${i}.png`,
+            isoView: `images/blackstone-luxury/Blackstone_luxury${i}.1.png`,
+            blocksUsed: []
+        })),
+        schematic: "downloads/blackstone-luxury.schem"
+    },
+    "coral-crest-estate": {
+        name: "Coral Crest Estate",
+        layers: Array.from({ length: 20 }, (_, i) => ({
+            topView: `images/coral-crest-estate/Coral-crest-estate${i}.png`,
+            isoView: `images/coral-crest-estate/Coral-crest-estate${i}.1.png`,
+            blocksUsed: []
+        })),
+        schematic: "downloads/coral-crest-estate.schem"
+    },
+    
+    // ===== PLACEHOLDER (DISABLED) =====
+    "wip-build": {
+        name: "Coming Soon!",
+        layers: [],
+        schematic: null
+    },
+    
+    // ===== TEMPLATE (FOR FUTURE BUILDS) =====
+    "_template": {
+        name: "BUILD_NAME",
+        layers: Array.from({ length: 1 }, (_, i) => ({
+            topView: `images/FOLDER_NAME/build_${i}.png`,
+            isoView: `images/FOLDER_NAME/build_${i}.1.png`,
+            blocksUsed: [
+                { type: "stone_bricks", quantity: 42 },
+                { type: "oak_planks", quantity: 64 }
+            ]
+        })),
+        schematic: "downloads/FILENAME.schem"
+    }
+};
 
-        // Viewer functionality
-        let currentBuild = null;
-        let currentLayer = 0;
-        let currentView = 'top'; // 'top' or 'iso'
+// Viewer functionality
+let currentBuild = null;
+let currentLayer = 0;
+let currentView = 'top';
 
-        function renderLayer(layerIndex) {
-            const layer = builds[currentBuild].layers[layerIndex];
-            if (!layer) return;
+function renderLayer(layerIndex) {
+    const build = builds[currentBuild];
+    if (!build || !build.layers.length) return;
+    
+    const layer = build.layers[layerIndex];
+    if (!layer) return;
 
-            document.getElementById('screenshot-container').innerHTML = `
-                <img src="${currentView === 'top' ? layer.topView : layer.isoView}" 
-                     class="layer-image" 
-                     alt="Layer ${layerIndex}">
-            `;
-            
-            document.getElementById('materials-list').innerHTML = layer.blocksUsed.map(block => `
-                <li>
-                    <span class="block-name">${block.type.replace(/_/g, ' ')}</span>
-                    <span class="block-quantity">×${block.quantity}</span>
-                </li>
-            `).join('') || '<li>No blocks listed for this layer</li>';
-            
-            document.getElementById('current-layer').textContent = layerIndex;
-            document.getElementById('total-layers').textContent = builds[currentBuild].layers.length - 1;
-            
-            document.getElementById('prev-layer').disabled = layerIndex === 0;
-            document.getElementById('next-layer').disabled = layerIndex === builds[currentBuild].layers.length - 1;
-        }
+    document.getElementById('screenshot-container').innerHTML = `
+        <img src="${currentView === 'top' ? layer.topView : layer.isoView}" 
+             class="layer-image" 
+             alt="Layer ${layerIndex}">
+    `;
+    
+    document.getElementById('materials-list').innerHTML = layer.blocksUsed.map(block => `
+        <li>
+            <span class="block-name">${block.type.replace(/_/g, ' ')}</span>
+            <span class="block-quantity">×${block.quantity}</span>
+        </li>
+    `).join('') || '<li>No blocks listed for this layer</li>';
+    
+    document.getElementById('current-layer').textContent = layerIndex;
+    document.getElementById('total-layers').textContent = build.layers.length - 1;
+    
+    document.getElementById('prev-layer').disabled = layerIndex === 0;
+    document.getElementById('next-layer').disabled = layerIndex === build.layers.length - 1;
+}
 
-        // Event listeners
-        document.getElementById('toggle-view').addEventListener('click', () => {
-            currentView = currentView === 'top' ? 'iso' : 'top';
+// Event listeners
+document.getElementById('toggle-view').addEventListener('click', () => {
+    currentView = currentView === 'top' ? 'iso' : 'top';
+    renderLayer(currentLayer);
+});
+
+document.querySelectorAll('.build-card').forEach(card => {
+    card.addEventListener('click', function() {
+        currentBuild = this.getAttribute('data-schematic');
+        const build = builds[currentBuild];
+        
+        // Skip if no layers available
+        if (!build || !build.layers.length) return;
+        
+        currentLayer = 0;
+        currentView = 'top';
+        document.getElementById('viewer-modal').style.display = 'block';
+        document.getElementById('build-viewer-title').textContent = build.name;
+        document.getElementById('download-schematic').href = build.schematic || '#';
+        renderLayer(0);
+    });
+});
+
+document.getElementById('prev-layer').addEventListener('click', () => {
+    if (currentLayer > 0) {
+        currentLayer--;
+        renderLayer(currentLayer);
+    }
+});
+
+document.getElementById('next-layer').addEventListener('click', () => {
+    if (currentLayer < builds[currentBuild]?.layers?.length - 1) {
+        currentLayer++;
+        renderLayer(currentLayer);
+    }
+});
+
+document.getElementById('close-viewer').addEventListener('click', () => {
+    document.getElementById('viewer-modal').style.display = 'none';
+});
+
+// Keyboard controls
+document.addEventListener('keydown', (e) => {
+    if (document.getElementById('viewer-modal').style.display === 'block') {
+        if (e.key === 'ArrowLeft' && currentLayer > 0) {
+            currentLayer--;
             renderLayer(currentLayer);
-        });
-
-        document.querySelectorAll('.build-card').forEach(card => {
-            card.addEventListener('click', function() {
-                currentBuild = this.getAttribute('data-schematic');
-                currentLayer = 0;
-                currentView = 'top';
-                document.getElementById('viewer-modal').style.display = 'block';
-                document.getElementById('build-viewer-title').textContent = builds[currentBuild].name;
-                document.getElementById('download-schematic').href = builds[currentBuild].schematic;
-                renderLayer(0);
-            });
-        });
-
-        document.getElementById('prev-layer').addEventListener('click', () => {
-            if (currentLayer > 0) {
-                currentLayer--;
-                renderLayer(currentLayer);
-            }
-        });
-
-        document.getElementById('next-layer').addEventListener('click', () => {
-            if (currentLayer < builds[currentBuild].layers.length - 1) {
-                currentLayer++;
-                renderLayer(currentLayer);
-            }
-        });
-
-        document.getElementById('close-viewer').addEventListener('click', () => {
+        } else if (e.key === 'ArrowRight' && currentLayer < builds[currentBuild]?.layers?.length - 1) {
+            currentLayer++;
+            renderLayer(currentLayer);
+        } else if (e.key === 'v') {
+            document.getElementById('toggle-view').click();
+        } else if (e.key === 'Escape') {
             document.getElementById('viewer-modal').style.display = 'none';
-        });
-
-        // Keyboard controls
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('viewer-modal').style.display === 'block') {
-                if (e.key === 'ArrowLeft' && currentLayer > 0) {
-                    currentLayer--;
-                    renderLayer(currentLayer);
-                } else if (e.key === 'ArrowRight' && currentLayer < builds[currentBuild].layers.length - 1) {
-                    currentLayer++;
-                    renderLayer(currentLayer);
-                } else if (e.key === 'v') {
-                    document.getElementById('toggle-view').click();
-                } else if (e.key === 'Escape') {
-                    document.getElementById('viewer-modal').style.display = 'none';
-                }
-            }
-        });
-    </script>
+        }
+    }
+});
+</script>
 </body>
 </html>
