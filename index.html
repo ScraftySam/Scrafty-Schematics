@@ -477,16 +477,14 @@ const builds = {
     },
 "wip-build": {
     name: "Coming Soon!",
-    layers: [
-        {
+     layers: Array.from({ length: 1 }, (_, i) => ({
             topView: "images/placeholder/thumbnail.jpg", // Will show this image
             isoView: "images/placeholder/thumbnail.jpg", // Same image for both views
             blocksUsed: []
-        }
-    ],
+        })),
     schematic: null
-},
-    
+        }
+    };
     // ===== TEMPLATE (FOR FUTURE BUILDS) =====
     "_template": {
         name: "BUILD_NAME",
