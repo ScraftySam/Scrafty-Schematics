@@ -361,25 +361,25 @@
             </div>
             
             <!-- Modern Mansion -->
-            <div class="build-card" data-schematic="modern-mansion">
-                <img src="https://via.placeholder.com/300x180?text=Modern+Mansion" class="thumbnail" alt="Modern Mansion">
+            <div class="build-card" data-schematic="coral-crest-estate">
+                <img src="images/coral-crest-mansion/thumbnail.png" class="thumbnail" alt="Coral Crest Estate">
                 <div class="build-info">
-                    <div class="build-name">Modern Mansion</div>
+                    <div class="build-name">Coral Crest Estate</div>
                     <div>
                         <span class="build-category">Modern</span>
-                        <span class="build-category">Creative</span>
+                        <span class="build-category">City</span>
                     </div>
                 </div>
             </div>
             
             <!-- Steampunk Airship -->
-            <div class="build-card" data-schematic="steampunk-airship">
-                <img src="https://via.placeholder.com/300x180?text=Steampunk+Airship" class="thumbnail" alt="Steampunk Airship">
+            <div class="build-card" data-schematic="placeholder">
+                <img src="images/placeholder/thumbnail.png" class="thumbnail" alt="Steampunk Airship">
                 <div class="build-info">
-                    <div class="build-name">Steampunk Airship</div>
+                    <div class="build-name">WIP</div>
                     <div>
-                        <span class="build-category">Steampunk</span>
-                        <span class="build-category">Fantasy</span>
+                        <span class="build-category">More Builds</span>
+                        <span class="build-category">Coming Soon</span>
                     </div>
                 </div>
             </div>
@@ -435,44 +435,43 @@
     </footer>
 
     <script>
-        // Build data
-        const builds = {
-    "wood-cabin": {
-        name: "Wood Cabin",
-        layers: Array.from({ length: 10 }, (_, i) => ({
-            topView: `images/wood-cabin/Wood_hut_${i}.png`,
-            isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
-            blocksUsed: [] // Add blocks here
-        })),
-        schematic: "downloads/wood-cabin.schem"
-    },
-    "blackstone-luxury": {
-        name: "Blackstone Luxury",
-        layers: Array.from({ length: 19 }, (_, i) => ({
-            topView: `images/blackstone-luxury/Blackstone_luxury${i}.png`,  // Removed underscore after "luxury"
-            isoView: `images/blackstone-luxury/Blackstone_luxury${i}.1.png`, // Removed underscore after "luxury"
-            blocksUsed: [] // Add blocks here
-        })),
-        schematic: "downloads/blackstone-luxury.schem"
-    },
-            "modern-mansion": {
-                name: "Modern Mansion",
-                layers: [{
-                    topView: "images/modern-mansion/layer-0-top.jpg",
-                    isoView: "images/modern-mansion/layer-0-iso.jpg",
-                    blocksUsed: []
-                }],
-                schematic: "downloads/modern-mansion.schem"
-            },
-            "steampunk-airship": {
-                name: "Steampunk Airship",
-                layers: [{
-                    topView: "images/steampunk-airship/layer-0-top.jpg",
-                    isoView: "images/steampunk-airship/layer-0-iso.jpg",
-                    blocksUsed: []
-                }],
-                schematic: "downloads/steampunk-airship.schem"
-            }
+    // Build data
+    const builds = {
+        "wood-cabin": {
+            name: "Wood Cabin",
+            layers: Array.from({ length: 10 }, (_, i) => ({
+                topView: `images/wood-cabin/Wood_hut_${i}.png`,
+                isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
+                blocksUsed: [] // Add blocks here
+            })),
+            schematic: "downloads/wood-cabin.schem"
+        },
+        "blackstone-luxury": {
+            name: "Blackstone Luxury",
+            layers: Array.from({ length: 19 }, (_, i) => ({
+                topView: `images/blackstone-luxury/Blackstone_luxury${i}.png`,
+                isoView: `images/blackstone-luxury/Blackstone_luxury${i}.1.png`,
+                blocksUsed: [] // Add blocks here
+            })),
+            schematic: "downloads/blackstone-luxury.schem"
+        },
+        "coral-crest-estate": {
+            name: "Coral Crest Estate",
+            layers: Array.from({ length: 20 }, (_, i) => ({
+                topView: `images/coral-crest-estate/Coral-crest-estate${i}.png`,
+                isoView: `images/coral-crest-estate/Coral-crest-estate${i}.1.png`,
+                blocksUsed: []
+            })),
+            schematic: "downloads/coral-crest-estate.schem"
+        },
+        "placeholder": {
+            name: "Placeholder",
+            layers: Array.from({ length: 20 }, (_, i) => ({
+                topView: `images/placeholder/Placeholder${i}.png`,
+                isoView: `images/placeholder/Placeholder${i}.1.png`,
+                blocksUsed: []
+            })),
+            schematic: "downloads/placeholder.schem"
         };
 
         // Viewer functionality
