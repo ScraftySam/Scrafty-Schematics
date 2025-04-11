@@ -469,19 +469,23 @@ const builds = {
     "coral-crest-estate": {
         name: "Coral Crest Estate",
         layers: Array.from({ length: 20 }, (_, i) => ({
-            topView: `images/coral-crest-estate/Coral-crest-estate${i}.png`,
-            isoView: `images/coral-crest-estate/Coral-crest-estate${i}.1.png`,
+            topView: `images/coral-crest-estate/Coral_crest_estate${i}.png`,
+            isoView: `images/coral-crest-estate/Coral_crest_estate${i}.1.png`,
             blocksUsed: []
         })),
         schematic: "downloads/coral-crest-estate.schem"
     },
-    
-    // ===== PLACEHOLDER (DISABLED) =====
-    "wip-build": {
-        name: "Coming Soon!",
-        layers: [],
-        schematic: null
-    },
+"wip-build": {
+    name: "Coming Soon!",
+    layers: [
+        {
+            topView: "images/placeholder/thumbnail.png", // Will show this image
+            isoView: "images/placeholder/thumbnail.png", // Same image for both views
+            blocksUsed: []
+        }
+    ],
+    schematic: null
+},
     
     // ===== TEMPLATE (FOR FUTURE BUILDS) =====
     "_template": {
