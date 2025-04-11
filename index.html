@@ -437,24 +437,24 @@
     <script>
         // Build data
         const builds = {
-            "wood-cabin": {
-                name: "Wood Cabin",
-                layers: Array.from({ length: 10 }, (_, i) => ({
-                    topView: `images/wood-cabin/Wood_hut_${i}.png`,
-                    isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
-                    blocksUsed: [] // Add blocks here
-                })),
-                schematic: "downloads/wood-cabin.schem"
-            },
-            "medieval-tavern": {
-                name: "Medieval Tavern",
-                layers: [{
-                    topView: "images/medieval-tavern/layer-0-top.jpg",
-                    isoView: "images/medieval-tavern/layer-0-iso.jpg",
-                    blocksUsed: []
-                }],
-                schematic: "downloads/medieval-tavern.schem"
-            },
+    "wood-cabin": {
+        name: "Wood Cabin",
+        layers: Array.from({ length: 10 }, (_, i) => ({
+            topView: `images/wood-cabin/Wood_hut_${i}.png`,
+            isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
+            blocksUsed: [] // Add blocks here
+        })),
+        schematic: "downloads/wood-cabin.schem"
+    },
+    "blackstone-luxury": {
+        name: "Blackstone Luxury",
+        layers: Array.from({ length: 19 }, (_, i) => ({
+            topView: `images/blackstone-luxury/Blackstone_luxury${i}.png`,  // Removed underscore after "luxury"
+            isoView: `images/blackstone-luxury/Blackstone_luxury${i}.1.png`, // Removed underscore after "luxury"
+            blocksUsed: [] // Add blocks here
+        })),
+        schematic: "downloads/blackstone-luxury.schem"
+    },
             "modern-mansion": {
                 name: "Modern Mansion",
                 layers: [{
