@@ -691,11 +691,15 @@ function renderLayer(layerIndex) {
             `<span class="stack-count">${stacks} stack${stacks !== 1 ? 's' : ''}${remainder > 0 ? ` + ${remainder}` : ''}</span>` : 
             '';
         
+        // Convert block type to lowercase for image filename
+        const blockImage = block.type.toLowerCase();
+        
         return `
         <li class="block-item">
-            <img src="images/blocks/${block.type}.png" 
+            <img src="images/blocks/${blockImage}.png" 
                  class="block-icon" 
-                 alt="${block.type.replace(/_/g, ' ')}">
+                 alt="${block.type.replace(/_/g, ' ')}"
+                 onerror="this.style.display='none'">
             <div class="block-text">
                 <span class="block-name">${block.type.replace(/_/g, ' ')}</span>
                 <div class="block-meta">
