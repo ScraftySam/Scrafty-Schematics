@@ -1,1 +1,93 @@
+wood cabin
+layer 0/ground layer
+15x farmland
+8x stone bricks
 
+layer 1
+10x oak log
+72x oak planks
+4x light gray wool
+42x stone bricks
+6x stone brick stairs
+15x spruce fence
+13x spruce fence gate
+1x spruce log
+15x wheat
+
+layer 2
+10x oak log
+36x stripped spruce wood
+4x spruce door
+2x stone brick stairs
+1x spruce log
+1x decorated pot
+2x dark oak sign
+2x dark oak slab
+1x oak trapdoor
+4x barrel
+3x chest
+1x cauldron
+1x anvil
+1x furnace
+1x craftingtable
+1x chiseled bookshelf
+1x white bed
+
+layer 3
+10x oak log
+20x stripped spruce wood
+16x glass pane
+1x lantern
+20x spruce leaves
+1x furnace
+1x oak trapdoor
+1x barrel
+1x potted blue orchid
+1x chest
+
+layer 4
+10x oak log
+36x stripped spruce wood
+4x spruce stairs
+1x oak hanging sign
+1x spruce log
+4x spruce leaves
+1x painting
+1x chest
+1x barrel
+8x oak trapdoor
+
+layer 5
+10x oak log
+40x stripped spruce wood
+42x cobbled deepslate stairs
+1x spruce log
+20x spruce leaves
+
+layer 6
+16x oak log
+34x oak stairs
+16x cobbled deepslate stairs
+34x deepslate tile stairs
+1x spruce log
+4x spruce leaves
+
+layer 7
+8x stripped spruce wood
+42x oak stairs
+16x cobbled deepslate stairs
+41x deepslate tile stairs
+1x deepslate bricks
+1x spruce log
+
+layer 8
+8x cobbled deepslate stairs
+50x deepslate tile stairs
+1x deepslate bricks
+1x spruce log
+4x spruce leaves
+
+layer 9
+4x dark oak trapdoor
+1x campfire
+1x spruce leaves
