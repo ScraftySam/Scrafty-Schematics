@@ -255,7 +255,22 @@
             background: #1FCBDA;
         }
 
-        /* Materials List */
+        /* Enhanced Materials List */
+        .materials-list {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .materials-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .materials-list::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 4px;
+        }
+
         .materials-list h3 {
             color: #FFD700;
             font-family: 'Press Start 2P', cursive;
@@ -266,27 +281,67 @@
             gap: 8px;
         }
 
-        .materials-list ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+        .block-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+            margin-bottom: 6px;
+            border-radius: 4px;
+            border-left: 3px solid #4CAF50;
+            transition: all 0.2s;
         }
 
-        .materials-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #4a4a4a;
-            display: flex;
-            justify-content: space-between;
+        .block-item:hover {
+            background: rgba(0,0,0,0.3);
+        }
+
+        .block-icon {
+            width: 48px;
+            height: 48px;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+        }
+
+        .block-text {
+            flex-grow: 1;
         }
 
         .block-name {
             color: #1FCBDA;
             text-transform: capitalize;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .block-meta {
+            display: flex;
+            gap: 8px;
         }
 
         .block-quantity {
             color: #FFD700;
             font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .stack-count {
+            color: #8B7500;
+            font-size: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .stack-count::before {
+            content: "⬛";
+            font-size: 0.6rem;
+            margin-right: 3px;
+            color: #FFD700;
         }
 
         /* Footer */
@@ -318,6 +373,10 @@
             }
             .minecraft-banner {
                 padding: 20px 30px;
+            }
+            .block-icon {
+                width: 36px;
+                height: 36px;
             }
         }
 
@@ -447,14 +506,153 @@
 <script>
 // Build data
 const builds = {
-    // ===== FUNCTIONAL BUILDS =====
     "wood-cabin": {
         name: "Wood Cabin",
-        layers: Array.from({ length: 10 }, (_, i) => ({
-            topView: `images/wood-cabin/Wood_hut_${i}.png`,
-            isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
-            blocksUsed: []
-        })),
+        layers: [
+            // Layer 0 (Ground)
+            {
+                topView: "images/wood-cabin/layer0.png",
+                isoView: "images/wood-cabin/layer0_iso.png",
+                blocksUsed: [
+                    { type: "farmland", quantity: 15 },
+                    { type: "stone_bricks", quantity: 8 }
+                ]
+            },
+            // Layer 1 (Base Structure)
+            {
+                topView: "images/wood-cabin/layer1.png",
+                isoView: "images/wood-cabin/layer1_iso.png",
+                blocksUsed: [
+                    { type: "oak_log", quantity: 10 },
+                    { type: "oak_planks", quantity: 72 },
+                    { type: "light_gray_wool", quantity: 4 },
+                    { type: "stone_bricks", quantity: 42 },
+                    { type: "stone_brick_stairs", quantity: 6 },
+                    { type: "spruce_fence", quantity: 15 },
+                    { type: "spruce_fence_gate", quantity: 13 },
+                    { type: "spruce_log", quantity: 1 },
+                    { type: "wheat", quantity: 15 }
+                ]
+            },
+            // Layer 2 (Interior)
+            {
+                topView: "images/wood-cabin/layer2.png",
+                isoView: "images/wood-cabin/layer2_iso.png",
+                blocksUsed: [
+                    { type: "oak_log", quantity: 10 },
+                    { type: "stripped_spruce_wood", quantity: 36 },
+                    { type: "spruce_door", quantity: 4 },
+                    { type: "stone_brick_stairs", quantity: 2 },
+                    { type: "spruce_log", quantity: 1 },
+                    { type: "decorated_pot", quantity: 1 },
+                    { type: "dark_oak_sign", quantity: 2 },
+                    { type: "dark_oak_slab", quantity: 2 },
+                    { type: "oak_trapdoor", quantity: 1 },
+                    { type: "barrel", quantity: 4 },
+                    { type: "chest", quantity: 3 },
+                    { type: "cauldron", quantity: 1 },
+                    { type: "anvil", quantity: 1 },
+                    { type: "furnace", quantity: 1 },
+                    { type: "crafting_table", quantity: 1 },
+                    { type: "chiseled_bookshelf", quantity: 1 },
+                    { type: "white_bed", quantity: 1 }
+                ]
+            },
+            // Layer 3 (Windows)
+            {
+                topView: "images/wood-cabin/layer3.png",
+                isoView: "images/wood-cabin/layer3_iso.png",
+                blocksUsed: [
+                    { type: "oak_log", quantity: 10 },
+                    { type: "stripped_spruce_wood", quantity: 20 },
+                    { type: "glass_pane", quantity: 16 },
+                    { type: "lantern", quantity: 1 },
+                    { type: "spruce_leaves", quantity: 20 },
+                    { type: "furnace", quantity: 1 },
+                    { type: "oak_trapdoor", quantity: 1 },
+                    { type: "barrel", quantity: 1 },
+                    { type: "potted_blue_orchid", quantity: 1 },
+                    { type: "chest", quantity: 1 }
+                ]
+            },
+            // Layer 4 (Roof Base)
+            {
+                topView: "images/wood-cabin/layer4.png",
+                isoView: "images/wood-cabin/layer4_iso.png",
+                blocksUsed: [
+                    { type: "oak_log", quantity: 10 },
+                    { type: "stripped_spruce_wood", quantity: 36 },
+                    { type: "spruce_stairs", quantity: 4 },
+                    { type: "oak_hanging_sign", quantity: 1 },
+                    { type: "spruce_log", quantity: 1 },
+                    { type: "spruce_leaves", quantity: 4 },
+                    { type: "painting", quantity: 1 },
+                    { type: "chest", quantity: 1 },
+                    { type: "barrel", quantity: 1 },
+                    { type: "oak_trapdoor", quantity: 8 }
+                ]
+            },
+            // Layer 5 (Roof Transition)
+            {
+                topView: "images/wood-cabin/layer5.png",
+                isoView: "images/wood-cabin/layer5_iso.png",
+                blocksUsed: [
+                    { type: "oak_log", quantity: 10 },
+                    { type: "stripped_spruce_wood", quantity: 40 },
+                    { type: "cobbled_deepslate_stairs", quantity: 42 },
+                    { type: "spruce_log", quantity: 1 },
+                    { type: "spruce_leaves", quantity: 20 }
+                ]
+            },
+            // Layer 6 (Roof)
+            {
+                topView: "images/wood-cabin/layer6.png",
+                isoView: "images/wood-cabin/layer6_iso.png",
+                blocksUsed: [
+                    { type: "oak_log", quantity: 16 },
+                    { type: "oak_stairs", quantity: 34 },
+                    { type: "cobbled_deepslate_stairs", quantity: 16 },
+                    { type: "deepslate_tile_stairs", quantity: 34 },
+                    { type: "spruce_log", quantity: 1 },
+                    { type: "spruce_leaves", quantity: 4 }
+                ]
+            },
+            // Layer 7 (Roof Details)
+            {
+                topView: "images/wood-cabin/layer7.png",
+                isoView: "images/wood-cabin/layer7_iso.png",
+                blocksUsed: [
+                    { type: "stripped_spruce_wood", quantity: 8 },
+                    { type: "oak_stairs", quantity: 42 },
+                    { type: "cobbled_deepslate_stairs", quantity: 16 },
+                    { type: "deepslate_tile_stairs", quantity: 41 },
+                    { type: "deepslate_bricks", quantity: 1 },
+                    { type: "spruce_log", quantity: 1 }
+                ]
+            },
+            // Layer 8 (Roof Finishing)
+            {
+                topView: "images/wood-cabin/layer8.png",
+                isoView: "images/wood-cabin/layer8_iso.png",
+                blocksUsed: [
+                    { type: "cobbled_deepslate_stairs", quantity: 8 },
+                    { type: "deepslate_tile_stairs", quantity: 50 },
+                    { type: "deepslate_bricks", quantity: 1 },
+                    { type: "spruce_log", quantity: 1 },
+                    { type: "spruce_leaves", quantity: 4 }
+                ]
+            },
+            // Layer 9 (Final Details)
+            {
+                topView: "images/wood-cabin/layer9.png",
+                isoView: "images/wood-cabin/layer9_iso.png",
+                blocksUsed: [
+                    { type: "dark_oak_trapdoor", quantity: 4 },
+                    { type: "campfire", quantity: 1 },
+                    { type: "spruce_leaves", quantity: 1 }
+                ]
+            }
+        ],
         schematic: "downloads/wood-cabin.schem"
     },
     "blackstone-luxury": {
@@ -478,13 +676,12 @@ const builds = {
     "wip-build": {
         name: "Coming Soon!",
         layers: Array.from({ length: 1 }, (_, i) => ({
-            topView: "images/placeholder/thumbnail.jpg", // Will show this image
-            isoView: "images/placeholder/thumbnail.jpg", // Same image for both views
+            topView: "images/placeholder/thumbnail.jpg",
+            isoView: "images/placeholder/thumbnail.jpg",
             blocksUsed: []
         })),
         schematic: null
     },
-    // ===== TEMPLATE (FOR FUTURE BUILDS) =====
     "_template": {
         name: "BUILD_NAME",
         layers: Array.from({ length: 1 }, (_, i) => ({
@@ -517,12 +714,28 @@ function renderLayer(layerIndex) {
              alt="Layer ${layerIndex}">
     `;
     
-    document.getElementById('materials-list').innerHTML = layer.blocksUsed.map(block => `
-        <li>
-            <span class="block-name">${block.type.replace(/_/g, ' ')}</span>
-            <span class="block-quantity">×${block.quantity}</span>
-        </li>
-    `).join('') || '<li>No blocks listed for this layer</li>';
+    document.getElementById('materials-list').innerHTML = layer.blocksUsed.map(block => {
+        const stacks = Math.floor(block.quantity / 64);
+        const remainder = block.quantity % 64;
+        const stackText = stacks > 0 ? 
+            `<span class="stack-count">${stacks} stack${stacks !== 1 ? 's' : ''}${remainder > 0 ? ` + ${remainder}` : ''}</span>` : 
+            '';
+        
+        return `
+        <li class="block-item">
+            <img src="images/blocks/iso/${block.type}.png" 
+                 class="block-icon" 
+                 alt="${block.type.replace(/_/g, ' ')}"
+                 onerror="this.src='images/blocks/vanilla/${block.type}.png'">
+            <div class="block-text">
+                <span class="block-name">${block.type.replace(/_/g, ' ')}</span>
+                <div class="block-meta">
+                    <span class="block-quantity">${block.quantity}x</span>
+                    ${stackText}
+                </div>
+            </div>
+        </li>`;
+    }).join('') || '<li class="no-materials">No materials needed for this layer</li>';
     
     document.getElementById('current-layer').textContent = layerIndex;
     document.getElementById('total-layers').textContent = build.layers.length - 1;
@@ -539,10 +752,11 @@ document.getElementById('toggle-view').addEventListener('click', () => {
 
 document.querySelectorAll('.build-card').forEach(card => {
     card.addEventListener('click', function() {
+        if (this.getAttribute('data-schematic') === 'wip-build') return;
+        
         currentBuild = this.getAttribute('data-schematic');
         const build = builds[currentBuild];
         
-        // Skip if no layers available
         if (!build || !build.layers.length) return;
         
         currentLayer = 0;
