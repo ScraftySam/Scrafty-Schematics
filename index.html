@@ -507,118 +507,117 @@
 // Build data
 const builds = {
     "wood-cabin": {
-        name: "Wood Cabin",
-        layers: Array.from({ length: 10 }, (_, i) => ({
-            topView: `images/wood-cabin/Wood_hut_${i}.png`,
-            isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
-            blocksUsed: [
-                // Layer 0
-                i === 0 ? [
-                    { type: "farmland", quantity: 15 },
-                    { type: "stone_bricks", quantity: 8 }
-                ] : 
-                // Layer 1
-                i === 1 ? [
-                    { type: "oak_log", quantity: 10 },
-                    { type: "oak_planks", quantity: 72 },
-                    { type: "light_gray_wool", quantity: 4 },
-                    { type: "stone_bricks", quantity: 42 },
-                    { type: "stone_brick_stairs", quantity: 6 },
-                    { type: "spruce_fence", quantity: 15 },
-                    { type: "spruce_fence_gate", quantity: 13 },
-                    { type: "spruce_log", quantity: 1 },
-                    { type: "wheat", quantity: 15 }
-                ] :
-                // Layer 2
-                i === 2 ? [
-                    { type: "oak_log", quantity: 10 },
-                    { type: "stripped_spruce_wood", quantity: 36 },
-                    { type: "spruce_door", quantity: 4 },
-                    { type: "stone_brick_stairs", quantity: 2 },
-                    { type: "spruce_log", quantity: 1 },
-                    { type: "decorated_pot", quantity: 1 },
-                    { type: "dark_oak_sign", quantity: 2 },
-                    { type: "dark_oak_slab", quantity: 2 },
-                    { type: "oak_trapdoor", quantity: 1 },
-                    { type: "barrel", quantity: 4 },
-                    { type: "chest", quantity: 3 },
-                    { type: "cauldron", quantity: 1 },
-                    { type: "anvil", quantity: 1 },
-                    { type: "furnace", quantity: 1 },
-                    { type: "crafting_table", quantity: 1 },
-                    { type: "chiseled_bookshelf", quantity: 1 },
-                    { type: "white_bed", quantity: 1 }
-                ] :
-                // Layer 3
-                i === 3 ? [
-                    { type: "oak_log", quantity: 10 },
-                    { type: "stripped_spruce_wood", quantity: 20 },
-                    { type: "glass_pane", quantity: 16 },
-                    { type: "lantern", quantity: 1 },
-                    { type: "spruce_leaves", quantity: 20 },
-                    { type: "furnace", quantity: 1 },
-                    { type: "oak_trapdoor", quantity: 1 },
-                    { type: "barrel", quantity: 1 },
-                    { type: "potted_blue_orchid", quantity: 1 },
-                    { type: "chest", quantity: 1 }
-                ] :
-                // Layer 4
-                i === 4 ? [
-                    { type: "oak_log", quantity: 10 },
-                    { type: "stripped_spruce_wood", quantity: 36 },
-                    { type: "spruce_stairs", quantity: 4 },
-                    { type: "oak_hanging_sign", quantity: 1 },
-                    { type: "spruce_log", quantity: 1 },
-                    { type: "spruce_leaves", quantity: 4 },
-                    { type: "painting", quantity: 1 },
-                    { type: "chest", quantity: 1 },
-                    { type: "barrel", quantity: 1 },
-                    { type: "oak_trapdoor", quantity: 8 }
-                ] :
-                // Layer 5
-                i === 5 ? [
-                    { type: "oak_log", quantity: 10 },
-                    { type: "stripped_spruce_wood", quantity: 40 },
-                    { type: "cobbled_deepslate_stairs", quantity: 42 },
-                    { type: "spruce_log", quantity: 1 },
-                    { type: "spruce_leaves", quantity: 20 }
-                ] :
-                // Layer 6
-                i === 6 ? [
-                    { type: "oak_log", quantity: 16 },
-                    { type: "oak_stairs", quantity: 34 },
-                    { type: "cobbled_deepslate_stairs", quantity: 16 },
-                    { type: "deepslate_tile_stairs", quantity: 34 },
-                    { type: "spruce_log", quantity: 1 },
-                    { type: "spruce_leaves", quantity: 4 }
-                ] :
-                // Layer 7
-                i === 7 ? [
-                    { type: "stripped_spruce_wood", quantity: 8 },
-                    { type: "oak_stairs", quantity: 42 },
-                    { type: "cobbled_deepslate_stairs", quantity: 16 },
-                    { type: "deepslate_tile_stairs", quantity: 41 },
-                    { type: "deepslate_bricks", quantity: 1 },
-                    { type: "spruce_log", quantity: 1 }
-                ] :
-                // Layer 8
-                i === 8 ? [
-                    { type: "cobbled_deepslate_stairs", quantity: 8 },
-                    { type: "deepslate_tile_stairs", quantity: 50 },
-                    { type: "deepslate_bricks", quantity: 1 },
-                    { type: "spruce_log", quantity: 1 },
-                    { type: "spruce_leaves", quantity: 4 }
-                ] :
-                // Layer 9
-                i === 9 ? [
-                    { type: "dark_oak_trapdoor", quantity: 4 },
-                    { type: "campfire", quantity: 1 },
-                    { type: "spruce_leaves", quantity: 1 }
-                ] : []
-            ]
-        })),
-        schematic: "downloads/wood-cabin.schem"
-    },
+    name: "Wood Cabin",
+    layers: Array.from({ length: 10 }, (_, i) => ({
+        topView: `images/wood-cabin/Wood_hut_${i}.png`,
+        isoView: `images/wood-cabin/Wood_hut_${i}.1.png`,
+        blocksUsed: 
+            // Layer 0
+            i === 0 ? [
+                { type: "farmland", quantity: 15 },
+                { type: "stone_bricks", quantity: 8 }
+            ] : 
+            // Layer 1
+            i === 1 ? [
+                { type: "oak_log", quantity: 10 },
+                { type: "oak_planks", quantity: 72 },
+                { type: "light_gray_wool", quantity: 4 },
+                { type: "stone_bricks", quantity: 42 },
+                { type: "stone_brick_stairs", quantity: 6 },
+                { type: "spruce_fence", quantity: 15 },
+                { type: "spruce_fence_gate", quantity: 13 },
+                { type: "spruce_log", quantity: 1 },
+                { type: "wheat", quantity: 15 }
+            ] :
+            // Layer 2
+            i === 2 ? [
+                { type: "oak_log", quantity: 10 },
+                { type: "stripped_spruce_wood", quantity: 36 },
+                { type: "spruce_door", quantity: 4 },
+                { type: "stone_brick_stairs", quantity: 2 },
+                { type: "spruce_log", quantity: 1 },
+                { type: "decorated_pot", quantity: 1 },
+                { type: "dark_oak_sign", quantity: 2 },
+                { type: "dark_oak_slab", quantity: 2 },
+                { type: "oak_trapdoor", quantity: 1 },
+                { type: "barrel", quantity: 4 },
+                { type: "chest", quantity: 3 },
+                { type: "cauldron", quantity: 1 },
+                { type: "anvil", quantity: 1 },
+                { type: "furnace", quantity: 1 },
+                { type: "crafting_table", quantity: 1 },
+                { type: "chiseled_bookshelf", quantity: 1 },
+                { type: "white_bed", quantity: 1 }
+            ] :
+            // Layer 3
+            i === 3 ? [
+                { type: "oak_log", quantity: 10 },
+                { type: "stripped_spruce_wood", quantity: 20 },
+                { type: "glass_pane", quantity: 16 },
+                { type: "lantern", quantity: 1 },
+                { type: "spruce_leaves", quantity: 20 },
+                { type: "furnace", quantity: 1 },
+                { type: "oak_trapdoor", quantity: 1 },
+                { type: "barrel", quantity: 1 },
+                { type: "potted_blue_orchid", quantity: 1 },
+                { type: "chest", quantity: 1 }
+            ] :
+            // Layer 4
+            i === 4 ? [
+                { type: "oak_log", quantity: 10 },
+                { type: "stripped_spruce_wood", quantity: 36 },
+                { type: "spruce_stairs", quantity: 4 },
+                { type: "oak_hanging_sign", quantity: 1 },
+                { type: "spruce_log", quantity: 1 },
+                { type: "spruce_leaves", quantity: 4 },
+                { type: "painting", quantity: 1 },
+                { type: "chest", quantity: 1 },
+                { type: "barrel", quantity: 1 },
+                { type: "oak_trapdoor", quantity: 8 }
+            ] :
+            // Layer 5
+            i === 5 ? [
+                { type: "oak_log", quantity: 10 },
+                { type: "stripped_spruce_wood", quantity: 40 },
+                { type: "cobbled_deepslate_stairs", quantity: 42 },
+                { type: "spruce_log", quantity: 1 },
+                { type: "spruce_leaves", quantity: 20 }
+            ] :
+            // Layer 6
+            i === 6 ? [
+                { type: "oak_log", quantity: 16 },
+                { type: "oak_stairs", quantity: 34 },
+                { type: "cobbled_deepslate_stairs", quantity: 16 },
+                { type: "deepslate_tile_stairs", quantity: 34 },
+                { type: "spruce_log", quantity: 1 },
+                { type: "spruce_leaves", quantity: 4 }
+            ] :
+            // Layer 7
+            i === 7 ? [
+                { type: "stripped_spruce_wood", quantity: 8 },
+                { type: "oak_stairs", quantity: 42 },
+                { type: "cobbled_deepslate_stairs", quantity: 16 },
+                { type: "deepslate_tile_stairs", quantity: 41 },
+                { type: "deepslate_bricks", quantity: 1 },
+                { type: "spruce_log", quantity: 1 }
+            ] :
+            // Layer 8
+            i === 8 ? [
+                { type: "cobbled_deepslate_stairs", quantity: 8 },
+                { type: "deepslate_tile_stairs", quantity: 50 },
+                { type: "deepslate_bricks", quantity: 1 },
+                { type: "spruce_log", quantity: 1 },
+                { type: "spruce_leaves", quantity: 4 }
+            ] :
+            // Layer 9
+            i === 9 ? [
+                { type: "dark_oak_trapdoor", quantity: 4 },
+                { type: "campfire", quantity: 1 },
+                { type: "spruce_leaves", quantity: 1 }
+            ] : []
+    })),
+    schematic: "downloads/wood-cabin.schem"
+},
     "blackstone-luxury": {
         name: "Blackstone Luxury",
         layers: Array.from({ length: 19 }, (_, i) => ({
